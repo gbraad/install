@@ -40,6 +40,8 @@ sleep 20
 
 apt-get install -y unzip
 
+apt-get install -y poppler-utils
+
 apt-get install -y redis-server
 
 apt-get install -y nginx
