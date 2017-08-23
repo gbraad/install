@@ -16,4 +16,6 @@ docker-compose up -d & wait
 
 sleep 20
 
+apt-get install -y nginx
+
 ./server
