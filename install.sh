@@ -26,22 +26,22 @@ read domain_address
 echo Please enter your SMTP server, Eg: smtp.zoho.com
 read smtp_server
 
-export LIBREREAD_SMTP_SERVER="$smtp_server"
+export LIBREREAD_SMTP_SERVER=$smtp_server
 
 echo Please enter your SMTP port, Eg: 587
 read smtp_port
 
-export LIBREREAD_SMTP_PORT="$smtp_port"
+export LIBREREAD_SMTP_PORT=$smtp_port
 
 echo Please enter your SMTP email address, Eg: info@example.com
 read smtp_address
 
-export LIBREREAD_SMTP_ADDRESS="$smtp_address"
+export LIBREREAD_SMTP_ADDRESS=$smtp_address
 
 echo Please enter your SMTP password. This will be application-specific password or email password
 read smtp_password
 
-export LIBREREAD_SMTP_PASSWORD="$smtp_password"
+export LIBREREAD_SMTP_PASSWORD=$smtp_password
 
 echo Please enter your LetsEncrypt email address
 read le_email_address
