@@ -1,0 +1,238 @@
+<!--
+Copyright 2017 Nirmal Kumar
+
+This file is part of LibreRead.
+
+LibreRead is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+LibreRead is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with LibreRead.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LibreRead</title>
+	<link rel="icon" type="image/png" href="/static/img/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/static/img/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/static/img/favicon-96x96.png" sizes="96x96">
+	<link href="https://fonts.googleapis.com/css?family=Droid+Sans:700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+	<link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="uploading-progress">Uploading...</div>
+		<div class="header-container">
+			<a href="/" class="logo">
+				<svg width="30" height="30" viewBox="290 230 280.089 340"><defs><style>.cls-1,.cls-2{fill:#676767;fill-rule:evenodd}.cls-2{fill:#fff}</style></defs><path id="Path_3" data-name="Path 3" class="cls-1" d="M281 140s-60 62.4-60 120c0 38.879 20 70 20 70 0 8.1-10 10-10 10-26.02-17.77-53.433-20.391-70-19.938a20 20 0 0 1-39.994 0c-16.57-.453-43.983 2.168-70 19.938 0 0-10-1.9-10-10 0 0 20-31.121 20-70C61 202.4 1 140 1 140a6.562 6.562 0 0 1 3.639-6.729c13.243-5.249 74.014-6.924 116.361 16.138v-14.784a39.979 39.979 0 0 1-.576-68.919C115.544 7.654 81 10 81 10V0c39.885 0 48.582 37.593 50.108 61.238a40.139 40.139 0 0 1 19.784 0C152.418 37.593 161.114 0 201 0v10s-34.544-2.346-39.424 55.706a39.979 39.979 0 0 1-.576 68.919v14.784c42.347-23.062 103.118-21.387 116.361-16.138A6.562 6.562 0 0 1 281 140z" transform="translate(289.044 230)"/><path id="Path_4" data-name="Path 4" class="cls-2" d="M241 170s-60 0-89.88 19.945L151 180c.014.268 20-20 89.989-20-.033.812.011 10 .011 10zm0-10h-.011c.003-.076.006-.084.011 0zM71 300s14.377-10 60-10v10s-30 0-60 10zm10-40l.081-9.986C121 250 131 260 131 260l-.134 9.875C111 260 80.976 261.495 81 260zm-20-50l.081-9.986C111 200 131 220 131 220l-.134 9.875C101 210 60.976 211.495 61 210zm-20-40s.044-9.188.011-10C111 160 130.986 180.268 131 180l-.12 9.945C101 170 41 170 41 170zm.011-10H41c0-.084.008-.076.011 0zm179.908 40.014L221 210c.024 1.495-40 0-69.866 19.875L151 220s20-20 69.919-19.986zm-20 50L201 260c.024 1.495-30 0-49.866 9.875L151 260s10-10 49.919-9.986zM211 310c-30-10-60-10-60-10v-10c45.623 0 60 10 60 10z" transform="translate(289.044 230)"/></svg>
+				LibreRead <span>beta</span></a>
+			<input type="text" class="search-box" placeholder="Type here to search..">
+			<div class="search-dropdown">
+				<label>Title</label>
+				<div class="sd-title-list">
+				</div>
+				<label>Content</label>
+				<div class="sd-content-list">
+				</div>
+			</div>
+			<svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25"><g class="nc-icon-wrapper" fill="#676767"><path data-color="color-2" d="M60 27H4c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h56c.6 0 1-.4 1-1v-8c0-.6-.4-1-1-1z"/><path d="M60 7H4c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h56c.6 0 1-.4 1-1V8c0-.6-.4-1-1-1zm0 40H4c-.6 0-1 .4-1 1v8c0 .6.4 1 1 1h56c.6 0 1-.4 1-1v-8c0-.6-.4-1-1-1z"/></g></svg>
+			<form enctype="multipart/form-data" action="/upload" class="upload-books-form">
+				<input type="file" class="upload-books" name="upload" multiple="multiple">
+			</form>
+			<div class="header-nav">
+				<a href="/" class="hn-book-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25"><g class="nc-icon-wrapper" fill="#676767"><path d="M18 43V5a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v38h16zM9 16a1 1 0 1 1 2 0v12a1 1 0 1 1-2 0V16z"/><path data-color="color-2" d="M2 45v16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V45H2z"/><path d="M37 43V5a1 1 0 0 0-1-1H22a1 1 0 0 0-1 1v38h16zm-9-27a1 1 0 1 1 2 0v12a1 1 0 1 1-2 0V16z"/><path data-color="color-2" d="M21 45v16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V45H21z"/><path d="M57.941 40.48L50.728 3.171a.998.998 0 0 0-1.172-.792L35.81 5.037a1 1 0 0 0-.792 1.171l7.214 37.31 15.709-3.038zm-13.17-25.972a.998.998 0 0 1 1.172.792l2.278 11.782a1 1 0 0 1-1.964.379l-2.278-11.782a1 1 0 0 1 .792-1.171z"/><path data-color="color-2" d="M42.611 45.481l3.037 15.709a1.001 1.001 0 0 0 1.172.791l13.746-2.657a1 1 0 0 0 .792-1.171l-3.037-15.71-15.71 3.038z"/></g></svg>
+					<label>Add new books</label>
+				</a>
+				<a href="/collections" class="hn-collection-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25"><g class="nc-icon-wrapper" fill="#676767"><path d="M61 29V2c0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1v27h58zM48 7h4v16h-4V7zm-7 0h4v16h-4V7zm-7 0h4v16h-4V7zM14 19h16v4H14v-4z"/><path data-color="color-2" d="M3 31v27c0 .6.4 1 1 1h5v3c0 .6.4 1 1 1s1-.4 1-1v-3h42v3c0 .6.4 1 1 1s1-.4 1-1v-3h5c.6 0 1-.4 1-1V31H3zm13 22h-4V37h4v16zm7 0h-4V37h4v16zm7 0h-4V37h4v16zm20 0H34v-4h16v4z"/></g></svg>
+					<label>Collections</label>
+				</a>
+				<a href="/" class="hn-settings-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48"><path d="M38.86 25.95c.08-.64.14-1.29.14-1.95s-.06-1.31-.14-1.95l4.23-3.31c.38-.3.49-.84.24-1.28l-4-6.93c-.25-.43-.77-.61-1.22-.43l-4.98 2.01c-1.03-.79-2.16-1.46-3.38-1.97L29 4.84c-.09-.47-.5-.84-1-.84h-8c-.5 0-.91.37-.99.84l-.75 5.3a14.8 14.8 0 0 0-3.38 1.97L9.9 10.1a1 1 0 0 0-1.22.43l-4 6.93c-.25.43-.14.97.24 1.28l4.22 3.31C9.06 22.69 9 23.34 9 24s.06 1.31.14 1.95l-4.22 3.31c-.38.3-.49.84-.24 1.28l4 6.93c.25.43.77.61 1.22.43l4.98-2.01c1.03.79 2.16 1.46 3.38 1.97l.75 5.3c.08.47.49.84.99.84h8c.5 0 .91-.37.99-.84l.75-5.3a14.8 14.8 0 0 0 3.38-1.97l4.98 2.01a1 1 0 0 0 1.22-.43l4-6.93c.25-.43.14-.97-.24-1.28l-4.22-3.31zM24 31c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" class="nc-icon-wrapper" fill="#676767"/></svg>
+					<label>Settings</label>
+				</a>
+				<a href="/signout" class="hn-sign-out-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48"><path d="M26 6h-4v20h4V6zm9.67 4.33l-2.83 2.83C35.98 15.73 38 19.62 38 24c0 7.73-6.27 14-14 14s-14-6.27-14-14c0-4.38 2.02-8.27 5.16-10.84l-2.83-2.83C8.47 13.63 6 18.52 6 24c0 9.94 8.06 18 18 18s18-8.06 18-18c0-5.48-2.47-10.37-6.33-13.67z" class="nc-icon-wrapper" fill="#676767"/></svg>
+					<label>Sign out</label>
+				</a>
+			</div>
+			<div class="header-nav-small">
+				<div class="hns-close">Close</div>
+				<a href="/" class="hn-book-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25"><g class="nc-icon-wrapper" fill="#676767"><path d="M18 43V5a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v38h16zM9 16a1 1 0 1 1 2 0v12a1 1 0 1 1-2 0V16z"/><path data-color="color-2" d="M2 45v16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V45H2z"/><path d="M37 43V5a1 1 0 0 0-1-1H22a1 1 0 0 0-1 1v38h16zm-9-27a1 1 0 1 1 2 0v12a1 1 0 1 1-2 0V16z"/><path data-color="color-2" d="M21 45v16a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V45H21z"/><path d="M57.941 40.48L50.728 3.171a.998.998 0 0 0-1.172-.792L35.81 5.037a1 1 0 0 0-.792 1.171l7.214 37.31 15.709-3.038zm-13.17-25.972a.998.998 0 0 1 1.172.792l2.278 11.782a1 1 0 0 1-1.964.379l-2.278-11.782a1 1 0 0 1 .792-1.171z"/><path data-color="color-2" d="M42.611 45.481l3.037 15.709a1.001 1.001 0 0 0 1.172.791l13.746-2.657a1 1 0 0 0 .792-1.171l-3.037-15.71-15.71 3.038z"/></g></svg>
+					<label>Add new books</label>
+				</a>
+				<a href="/collections" class="hn-collection-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25"><g class="nc-icon-wrapper" fill="#676767"><path d="M61 29V2c0-.6-.4-1-1-1H4c-.6 0-1 .4-1 1v27h58zM48 7h4v16h-4V7zm-7 0h4v16h-4V7zm-7 0h4v16h-4V7zM14 19h16v4H14v-4z"/><path data-color="color-2" d="M3 31v27c0 .6.4 1 1 1h5v3c0 .6.4 1 1 1s1-.4 1-1v-3h42v3c0 .6.4 1 1 1s1-.4 1-1v-3h5c.6 0 1-.4 1-1V31H3zm13 22h-4V37h4v16zm7 0h-4V37h4v16zm7 0h-4V37h4v16zm20 0H34v-4h16v4z"/></g></svg>
+					<label>Collections</label>
+				</a>
+				<a href="/" class="hn-settings-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48"><path d="M38.86 25.95c.08-.64.14-1.29.14-1.95s-.06-1.31-.14-1.95l4.23-3.31c.38-.3.49-.84.24-1.28l-4-6.93c-.25-.43-.77-.61-1.22-.43l-4.98 2.01c-1.03-.79-2.16-1.46-3.38-1.97L29 4.84c-.09-.47-.5-.84-1-.84h-8c-.5 0-.91.37-.99.84l-.75 5.3a14.8 14.8 0 0 0-3.38 1.97L9.9 10.1a1 1 0 0 0-1.22.43l-4 6.93c-.25.43-.14.97.24 1.28l4.22 3.31C9.06 22.69 9 23.34 9 24s.06 1.31.14 1.95l-4.22 3.31c-.38.3-.49.84-.24 1.28l4 6.93c.25.43.77.61 1.22.43l4.98-2.01c1.03.79 2.16 1.46 3.38 1.97l.75 5.3c.08.47.49.84.99.84h8c.5 0 .91-.37.99-.84l.75-5.3a14.8 14.8 0 0 0 3.38-1.97l4.98 2.01a1 1 0 0 0 1.22-.43l4-6.93c.25-.43.14-.97-.24-1.28l-4.22-3.31zM24 31c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" class="nc-icon-wrapper" fill="#676767"/></svg>
+					<label>Account settings</label>
+				</a>
+				<a href="/signout" class="hn-sign-out-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48"><path d="M26 6h-4v20h4V6zm9.67 4.33l-2.83 2.83C35.98 15.73 38 19.62 38 24c0 7.73-6.27 14-14 14s-14-6.27-14-14c0-4.38 2.02-8.27 5.16-10.84l-2.83-2.83C8.47 13.63 6 18.52 6 24c0 9.94 8.06 18 18 18s18-8.06 18-18c0-5.48-2.47-10.37-6.33-13.67z" class="nc-icon-wrapper" fill="#676767"/></svg>
+					<label>Sign out</label>
+				</a>
+			</div>
+		</div>
+	</header>
+	<div class="page-container">
+		<div class="quote-of-the-day">
+			<div class="qotd-border">
+				<label>QUOTE OF THE DAY</label>
+				<img src="{{ .q.Image }}" width="50">
+				<div class="quote">{{ .q.Quote }}</div>
+				<div class="author">- <a target="blank" href="{{ .q.AuthorURL }}">{{ .q.Author }}</a></div>
+				<a target="blank" href="{{ .q.FromBookURL }}" class="from-book">{{ .q.FromBook }}</a>
+			</div>
+		</div>
+		<div class="currently-reading-container">
+			<div class="crc-bg">
+				<label>Currently reading</label>
+				<div class="crcb-arrow">
+					<div class="left none">
+						<svg width="33" height="20" viewBox="0 0 33 20" xmlns="http://www.w3.org/2000/svg"><title>Group 2</title><g stroke="#fff" stroke-width="3" fill="none" fill-rule="evenodd"><path d="M33 10.143H3"/><path stroke-linecap="square" d="M10.143 17.286L3 10.143 10.143 3"/></g></svg>
+					</div>
+					<div class="right">
+						<svg width="33" height="20" viewBox="0 0 33 20" xmlns="http://www.w3.org/2000/svg"><title>Group 3</title><g stroke="#fff" stroke-width="3" fill="none" fill-rule="evenodd"><path d="M0 10.143h30"/><path stroke-linecap="square" d="M22.857 3L30 10.143l-7.143 7.143"/></g></svg>
+					</div>
+				</div>
+				<div class="crcb-book-list" data-simple-slider>
+					{{ range .currentlyReadingBooks }}
+						<a href="{{ .URL }}">
+							<img src="{{ .Cover }}" width="205">
+						</a>
+					{{ end }}
+				</div>		
+			</div>
+		</div>
+		<div class="books-container">
+			<div class="bc-books-list">
+				{{ range .booksList }}
+					<div>
+						{{ range . }}
+							<a href="{{.URL}}" title="{{ .Title }}">
+								<img src="{{.Cover}}" width="205">
+							</a>
+						{{ end }}
+					</div>
+				{{ end }}
+			</div>
+			<div class="bc-books-list-medium">
+				{{ range .booksListMedium }}
+					<div>
+					{{ range .}}
+						<a href="{{.URL}}" title="{{ .Title }}">
+							<img src="{{.Cover}}" width="205">
+						</a>
+					{{ end }}
+					</div>
+				{{ end }}
+			</div>
+			<div class="bc-books-list-small">
+				{{ range .booksListSmall }}
+					<div>
+					{{ range .}}
+						<a href="{{.URL}}" title="{{ .Title }}">
+							<img src="{{.Cover}}" width="205">
+						</a>
+					{{ end }}
+					</div>
+				{{ end }}
+			</div>
+			<div class="bc-books-list-xtra-small">
+				{{ range .booksListXtraSmall }}
+					<a href="{{.URL}}" title="{{ .Title }}">
+						<img src="{{.Cover}}" width="205">
+					</a>
+				{{ end }}
+			</div>
+			<div class="bc-pagination">
+				<a href="" class="left none">
+					<svg width="33" height="20" viewBox="0 0 33 20" xmlns="http://www.w3.org/2000/svg"><title>Group 2</title><g stroke="#222" stroke-width="3" fill="none" fill-rule="evenodd"><path d="M33 10.143H3"/><path stroke-linecap="square" d="M10.143 17.286L3 10.143 10.143 3"/></g></svg>
+				</a>
+				<a href="" class="num none first-num">1</a>
+				<div class="dots dots-one">...</div>
+				<a href="/books/2" class="num second-num">2</a>
+				<a href="/books/3" class="num third-num">3</a>
+				<a href="/books/4" class="num fourth-num">4</a>
+				<div class="dots dots-two">...</div>
+				<a href="/books/{{ .tp }}" class="num end-num">{{ .tp }}</a>
+				<a href="/books/2" class="right">
+					<svg width="33" height="20" viewBox="0 0 33 20" xmlns="http://www.w3.org/2000/svg"><title>Group 3</title><g stroke="#222" stroke-width="3" fill="none" fill-rule="evenodd"><path d="M0 10.143h30"/><path stroke-linecap="square" d="M22.857 3L30 10.143l-7.143 7.143"/></g></svg>
+				</a>
+			</div>
+		</div>
+	</div>
+	<footer></footer>
+	<script
+  		src="https://code.jquery.com/jquery-3.2.1.min.js"
+  		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  		crossorigin="anonymous"></script>
+  	<script src="/static/js/main.js" type="text/javascript"></script>
+  	<script type="text/javascript">
+  		// Pagination code
+  		var totalPages = parseInt({{.totalPages}})
+  		$('.bc-pagination .dots-one').hide()
+  		var windowWidth = $(window).width()
+  		
+  		if (totalPages > 9) {
+  			if (windowWidth <= 740) {
+  				$('.bc-pagination').css('width', '231px')
+  			} else {
+  				$('.bc-pagination').css('width', '403px')
+  			}
+  		} else if (totalPages <= 9 && totalPages > 5) {
+  			if (windowWidth <= 740) {
+  				$('.bc-pagination').css('width', '220px')
+  			}
+  		}
+
+  		if (totalPages <= 5) {
+  			$('.bc-pagination .dots').hide()
+
+  			if (totalPages == 4) {
+  				$('.bc-pagination .end-num').hide()
+  				if (windowWidth <= 740) {
+  					$('.bc-pagination .fourth-num').css('margin-right', 0)
+  					$('.bc-pagination').css('width', '132px')
+  				} else {
+  					$('.bc-pagination').css('width', '304px')
+  				}
+  			} else if (totalPages == 3) {
+  				$('.bc-pagination .end-num, .bc-pagination .fourth-num').hide()
+  				if (windowWidth <= 740) {
+  					$('.bc-pagination .third-num').css('margin-right', 0)
+  					$('.bc-pagination').css('width', '91px')
+  				} else {
+  					$('.bc-pagination').css('width', '263px')
+  				}
+  			} else if (totalPages == 2) {
+  				$('.bc-pagination .end-num, .bc-pagination .fourth-num, .bc-pagination .third-num').hide()
+  				if (windowWidth <= 740) {
+  					$('.bc-pagination .second-num').css('margin-right', 0)
+  					$('.bc-pagination').css('width', '51px')
+  				} else {
+  					$('.bc-pagination').css('width', '223px')
+  				}
+  			} else if (totalPages <= 1) {
+  				$('.bc-pagination').hide()
+  			} else {
+  				$('.bc-pagination').css('width', '345px')
+  			}
+  		}
+  	</script>
+</body>
+</html>

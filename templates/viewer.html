@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<!--
+Copyright 2012 Mozilla Foundation
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Adobe CMap resources are covered by their own copyright but the same license:
+
+    Copyright 1990-2015 Adobe Systems Incorporated.
+
+See https://github.com/adobe-type-tools/cmap-resources
+-->
+<html dir="ltr" mozdisallowselectionprint moznomarginboxes>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="google" content="notranslate">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>LibreRead - PDF.js viewer</title>
+    <link rel="icon" type="image/png" href="/static/img/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/static/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/static/img/favicon-96x96.png" sizes="96x96">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/viewer.css">
+	<!-- This snippet is used in production (included from viewer.html) -->
+	<link rel="resource" type="application/l10n" href="../static/js/pdfjs/web/locale/locale.properties">
+	<script src="../static/js/pdfjs/build/pdf.js"></script>
+	<script src="../static/js/pdfjs/build/pdf.worker.js"></script>
+  <script src="../static/js/pdfjs/web/viewer.js"></script>
+  </head>
+  <body tabindex="1" class="loadingInProgress" style="overflow: hidden;">
+    <div id="outerContainer">
+      <div id="sidebarContainer">
+        <div id="toolbarSidebar">
+          <div class="splitToolbarButton toggled">
+            <button id="viewThumbnail" class="toolbarButton toggled" title="Show Thumbnails" tabindex="2" data-l10n-id="thumbs">
+               <span data-l10n-id="thumbs_label">Thumbnails</span>
+            </button>
+            <button id="viewOutline" class="toolbarButton" title="Show Document Outline (double-click to expand/collapse all items)" tabindex="3" data-l10n-id="document_outline">
+               <span data-l10n-id="document_outline_label">Document Outline</span>
+            </button>
+            <button id="viewAttachments" class="toolbarButton" title="Show Attachments" tabindex="4" data-l10n-id="attachments">
+               <span data-l10n-id="attachments_label">Attachments</span>
+            </button>
+          </div>
+        </div>
+        <div id="sidebarContent">
+          <div id="thumbnailView">
+          </div>
+          <div id="outlineView" class="hidden">
+          </div>
+          <div id="attachmentsView" class="hidden">
+          </div>
+        </div>
+      </div>  <!-- sidebarContainer -->
+
+      <div id="mainContainer">
+        <div class="findbar hidden doorHanger" id="findbar">
+          <div id="findbarInputContainer">
+            <input id="findInput" class="toolbarField" title="Find" placeholder="Find in document…" tabindex="91" data-l10n-id="find_input" style="float: left;">
+            <div class="splitToolbarButton">
+              <button id="findPrevious" class="toolbarButton findPrevious" title="Find the previous occurrence of the phrase" tabindex="92" data-l10n-id="find_previous">
+                <span data-l10n-id="find_previous_label">Previous</span>
+              </button>
+              <div class="splitToolbarButtonSeparator"></div>
+              <button id="findNext" class="toolbarButton findNext" title="Find the next occurrence of the phrase" tabindex="93" data-l10n-id="find_next">
+                <span data-l10n-id="find_next_label">Next</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="findbarOptionsContainer">
+            <input type="checkbox" id="findHighlightAll" class="toolbarField" tabindex="94">
+            <label for="findHighlightAll" class="toolbarLabel" data-l10n-id="find_highlight">Highlight all</label>
+            <input type="checkbox" id="findMatchCase" class="toolbarField" tabindex="95">
+            <label for="findMatchCase" class="toolbarLabel" data-l10n-id="find_match_case_label">Match case</label>
+            <span id="findResultsCount" class="toolbarLabel hidden"></span>
+          </div>
+
+          <div id="findbarMessageContainer">
+            <span id="findMsg" class="toolbarLabel"></span>
+          </div>
+        </div>  <!-- findbar -->
+
+        <div id="secondaryToolbar" class="secondaryToolbar hidden doorHangerRight">
+          <div id="secondaryToolbarButtonContainer">
+          	<button id="secondaryDeleteBook" class="secondaryToolbarButton delete-book visibleLargeView" title="Delete this book" tabindex="51">
+          		<svg class="pdfjs-delete-book-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><g fill="none" stroke="#fff" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10"><path d="M2 2h44v44H2z"/><path data-color="color-2" d="M32 16L16 32m16 0L16 16"/></g></svg>
+          		<span>Delete book</span>
+          	</button>
+            <button id="secondaryPresentationMode" class="secondaryToolbarButton presentationMode visibleLargeView" title="Switch to Presentation Mode" tabindex="51" data-l10n-id="presentation_mode">
+              <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
+            </button>
+
+            <button id="secondaryOpenFile" class="secondaryToolbarButton openFile visibleLargeView" title="Open File" tabindex="52" data-l10n-id="open_file">
+              <span data-l10n-id="open_file_label">Open</span>
+            </button>
+
+            <button id="secondaryPrint" class="secondaryToolbarButton print visibleMediumView" title="Print" tabindex="53" data-l10n-id="print">
+              <span data-l10n-id="print_label">Print</span>
+            </button>
+
+            <button id="secondaryDownload" class="secondaryToolbarButton download visibleMediumView" title="Download" tabindex="54" data-l10n-id="download">
+              <span data-l10n-id="download_label">Download</span>
+            </button>
+
+            <a href="#" id="secondaryViewBookmark" class="secondaryToolbarButton bookmark visibleSmallView" title="Current view (copy or open in new window)" tabindex="55" data-l10n-id="bookmark">
+              <span data-l10n-id="bookmark_label">Current View</span>
+            </a>
+
+            <div class="horizontalToolbarSeparator visibleLargeView"></div>
+
+            <button id="firstPage" class="secondaryToolbarButton firstPage" title="Go to First Page" tabindex="56" data-l10n-id="first_page">
+              <span data-l10n-id="first_page_label">Go to First Page</span>
+            </button>
+            <button id="lastPage" class="secondaryToolbarButton lastPage" title="Go to Last Page" tabindex="57" data-l10n-id="last_page">
+              <span data-l10n-id="last_page_label">Go to Last Page</span>
+            </button>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <button id="pageRotateCw" class="secondaryToolbarButton rotateCw" title="Rotate Clockwise" tabindex="58" data-l10n-id="page_rotate_cw">
+              <span data-l10n-id="page_rotate_cw_label">Rotate Clockwise</span>
+            </button>
+            <button id="pageRotateCcw" class="secondaryToolbarButton rotateCcw" title="Rotate Counterclockwise" tabindex="59" data-l10n-id="page_rotate_ccw">
+              <span data-l10n-id="page_rotate_ccw_label">Rotate Counterclockwise</span>
+            </button>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <button id="cursorSelectTool" class="secondaryToolbarButton selectTool toggled" title="Enable Text Selection Tool" tabindex="60" data-l10n-id="cursor_text_select_tool">
+              <span data-l10n-id="cursor_text_select_tool_label">Text Selection Tool</span>
+            </button>
+            <button id="cursorHandTool" class="secondaryToolbarButton handTool" title="Enable Hand Tool" tabindex="61" data-l10n-id="cursor_hand_tool">
+              <span data-l10n-id="cursor_hand_tool_label">Hand Tool</span>
+            </button>
+
+            <div class="horizontalToolbarSeparator"></div>
+
+            <button id="documentProperties" class="secondaryToolbarButton documentProperties" title="Document Properties…" tabindex="62" data-l10n-id="document_properties">
+              <span data-l10n-id="document_properties_label">Document Properties…</span>
+            </button>
+          </div>
+        </div>  <!-- secondaryToolbar -->
+
+        <div class="toolbar">
+          <div id="toolbarContainer">
+            <div id="toolbarViewer">
+              <div id="toolbarViewerLeft">
+                <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
+                  <span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
+                </button>
+                <div class="toolbarButtonSpacer"></div>
+                <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar">
+                  <span data-l10n-id="findbar_label">Find</span>
+                </button>
+                <div class="splitToolbarButton hiddenSmallView">
+                  <button class="toolbarButton pageUp" title="Previous Page" id="previous" tabindex="13" data-l10n-id="previous">
+                    <span data-l10n-id="previous_label">Previous</span>
+                  </button>
+                  <div class="splitToolbarButtonSeparator"></div>
+                  <button class="toolbarButton pageDown" title="Next Page" id="next" tabindex="14" data-l10n-id="next">
+                    <span data-l10n-id="next_label">Next</span>
+                  </button>
+                </div>
+                <input type="number" id="pageNumber" class="toolbarField pageNumber" title="Page" value="1" size="4" min="1" tabindex="15" data-l10n-id="page">
+                <span id="numPages" class="toolbarLabel"></span>
+              </div>
+              <div id="toolbarViewerRight">
+              	<a href="" id="deleteBook" class="pdfjs-delete-book">Delete book</a>
+                <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
+                  <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
+                </button>
+
+                <button id="openFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
+                  <span data-l10n-id="open_file_label">Open</span>
+                </button>
+
+                <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
+                  <span data-l10n-id="print_label">Print</span>
+                </button>
+
+                <button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
+                  <span data-l10n-id="download_label">Download</span>
+                </button>
+                <a href="#" id="viewBookmark" class="toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
+                  <span data-l10n-id="bookmark_label">Current View</span>
+                </a>
+
+                <div class="verticalToolbarSeparator hiddenSmallView"></div>
+
+                <button id="secondaryToolbarToggle" class="toolbarButton" title="Tools" tabindex="36" data-l10n-id="tools">
+                  <span data-l10n-id="tools_label">Tools</span>
+                </button>
+              </div>
+              <div id="toolbarViewerMiddle">
+                <div class="splitToolbarButton">
+                  <button id="zoomOut" class="toolbarButton zoomOut" title="Zoom Out" tabindex="21" data-l10n-id="zoom_out">
+                    <span data-l10n-id="zoom_out_label">Zoom Out</span>
+                  </button>
+                  <div class="splitToolbarButtonSeparator"></div>
+                  <button id="zoomIn" class="toolbarButton zoomIn" title="Zoom In" tabindex="22" data-l10n-id="zoom_in">
+                    <span data-l10n-id="zoom_in_label">Zoom In</span>
+                   </button>
+                </div>
+                <span id="scaleSelectContainer" class="dropdownToolbarButton">
+                  <select id="scaleSelect" title="Zoom" tabindex="23" data-l10n-id="zoom">
+                    <option id="pageAutoOption" title="" value="auto" selected="selected" data-l10n-id="page_scale_auto">Automatic Zoom</option>
+                    <option id="pageActualOption" title="" value="page-actual" data-l10n-id="page_scale_actual">Actual Size</option>
+                    <option id="pageFitOption" title="" value="page-fit" data-l10n-id="page_scale_fit">Fit Page</option>
+                    <option id="pageWidthOption" title="" value="page-width" data-l10n-id="page_scale_width">Full Width</option>
+                    <option id="customScaleOption" title="" value="custom" disabled="disabled" hidden="true"></option>
+                    <option title="" value="0.5" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 50 }'>50%</option>
+                    <option title="" value="0.75" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 75 }'>75%</option>
+                    <option title="" value="1" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 100 }'>100%</option>
+                    <option title="" value="1.25" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 125 }'>125%</option>
+                    <option title="" value="1.5" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 150 }'>150%</option>
+                    <option title="" value="2" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 200 }'>200%</option>
+                    <option title="" value="3" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 300 }'>300%</option>
+                    <option title="" value="4" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 400 }'>400%</option>
+                  </select>
+                </span>
+              </div>
+            </div>
+            <div id="loadingBar">
+              <div class="progress">
+                <div class="glimmer">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <menu type="context" id="viewerContextMenu">
+          <menuitem id="contextFirstPage" label="First Page"
+                    data-l10n-id="first_page"></menuitem>
+          <menuitem id="contextLastPage" label="Last Page"
+                    data-l10n-id="last_page"></menuitem>
+          <menuitem id="contextPageRotateCw" label="Rotate Clockwise"
+                    data-l10n-id="page_rotate_cw"></menuitem>
+          <menuitem id="contextPageRotateCcw" label="Rotate Counter-Clockwise"
+                    data-l10n-id="page_rotate_ccw"></menuitem>
+        </menu>
+
+        <div id="viewerContainer" tabindex="0">
+          <div id="viewer" class="pdfViewer"></div>
+        </div>
+
+        <div id="errorWrapper" hidden='true'>
+          <div id="errorMessageLeft">
+            <span id="errorMessage"></span>
+            <button id="errorShowMore" data-l10n-id="error_more_info">
+              More Information
+            </button>
+            <button id="errorShowLess" data-l10n-id="error_less_info" hidden='true'>
+              Less Information
+            </button>
+          </div>
+          <div id="errorMessageRight">
+            <button id="errorClose" data-l10n-id="error_close">
+              Close
+            </button>
+          </div>
+          <div class="clearBoth"></div>
+          <textarea id="errorMoreInfo" hidden='true' readonly="readonly"></textarea>
+        </div>
+      </div> <!-- mainContainer -->
+
+      <div id="overlayContainer" class="hidden">
+        <div id="passwordOverlay" class="container hidden">
+          <div class="dialog">
+            <div class="row">
+              <p id="passwordText" data-l10n-id="password_label">Enter the password to open this PDF file:</p>
+            </div>
+            <div class="row">
+              <input type="password" id="password" class="toolbarField">
+            </div>
+            <div class="buttonRow">
+              <button id="passwordCancel" class="overlayButton"><span data-l10n-id="password_cancel">Cancel</span></button>
+              <button id="passwordSubmit" class="overlayButton"><span data-l10n-id="password_ok">OK</span></button>
+            </div>
+          </div>
+        </div>
+        <div id="documentPropertiesOverlay" class="container hidden">
+          <div class="dialog">
+            <div class="row">
+              <span data-l10n-id="document_properties_file_name">File name:</span> <p id="fileNameField">-</p>
+            </div>
+            <div class="row">
+              <span data-l10n-id="document_properties_file_size">File size:</span> <p id="fileSizeField">-</p>
+            </div>
+            <div class="separator"></div>
+            <div class="row">
+              <span data-l10n-id="document_properties_title">Title:</span> <p id="titleField">-</p>
+            </div>
+            <div class="row">
+              <span data-l10n-id="document_properties_author">Author:</span> <p id="authorField">-</p>
+            </div>
+            <div class="row">
+              <span data-l10n-id="document_properties_subject">Subject:</span> <p id="subjectField">-</p>
+            </div>
+            <div class="row">
+              <span data-l10n-id="document_properties_keywords">Keywords:</span> <p id="keywordsField">-</p>
+            </div>
+            <div class="row">
+              <span data-l10n-id="document_properties_creation_date">Creation Date:</span> <p id="creationDateField">-</p>
+            </div>
+            <div class="row">
+              <span data-l10n-id="document_properties_modification_date">Modification Date:</span> <p id="modificationDateField">-</p>
+            </div>
+            <div class="row">
+              <span data-l10n-id="document_properties_creator">Creator:</span> <p id="creatorField">-</p>
+            </div>
+            <div class="separator"></div>
+            <div class="row">
+              <span data-l10n-id="document_properties_producer">PDF Producer:</span> <p id="producerField">-</p>
+            </div>
+            <div class="row">
+              <span data-l10n-id="document_properties_version">PDF Version:</span> <p id="versionField">-</p>
+            </div>
+            <div class="row">
+              <span data-l10n-id="document_properties_page_count">Page Count:</span> <p id="pageCountField">-</p>
+            </div>
+            <div class="buttonRow">
+              <button id="documentPropertiesClose" class="overlayButton"><span data-l10n-id="document_properties_close">Close</span></button>
+            </div>
+          </div>
+        </div>
+        <div id="printServiceOverlay" class="container hidden">
+          <div class="dialog">
+            <div class="row">
+              <span data-l10n-id="print_progress_message">Preparing document for printing…</span>
+            </div>
+            <div class="row">
+              <progress value="0" max="100"></progress>
+              <span data-l10n-id="print_progress_percent" data-l10n-args='{ "progress": 0 }' class="relative-progress">0%</span>
+            </div>
+            <div class="buttonRow">
+              <button id="printCancel" class="overlayButton"><span data-l10n-id="print_progress_close">Cancel</span></button>
+            </div>
+          </div>
+        </div>
+      </div>  <!-- overlayContainer -->
+
+    </div> <!-- outerContainer -->
+    <div id="printContainer"></div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/js/TextHighlighter.min.js"></script>
+    <script type="text/javascript">
+    var term = window.location.href.split("&").pop().split('term=').pop()
+    document.addEventListener('textlayerrendered', function (e) {
+      if (e.detail.pageNumber === PDFViewerApplication.page) {
+        window.find(term)
+      }
+    }, true);
+
+    	var delEl = document.getElementById('deleteBook');
+    	var del2El = document.getElementById('secondaryDeleteBook');
+
+		delEl.addEventListener('click', function(e) {
+			e.preventDefault();
+			delBook();
+		}, false);
+		
+		del2El.addEventListener('click', function(e) {
+			e.preventDefault();
+			delBook();
+		}, false);
+
+		function delBook() {
+			var retVal = confirm("Do you want to delete this book?");
+      if( retVal == true ) {
+    	  var fileName = window.location.pathname.split('/').pop();
+    		var filePath = '/delete-book/' + fileName;
+    		window.location.href = filePath;
+    	}
+		}
+
+    $(function() {
+      var hltr = new TextHighlighter(document.getElementById('viewer'), {
+        onBeforeHighlight: function (range) {
+          if ((range.commonAncestorContainer.parentElement.className == 'ann-text') || (range.commonAncestorContainer.parentElement.className == 'annotation-save')) return false
+          return window.confirm('Selected text: ' + range + '\nReally highlight?')
+        },
+        onAfterHighlight: function (range, highlights) {
+          var hDivIndex = []
+            , html = []
+            , pIndex = []
+            , $h = []
+
+          highlights.map(function(h) {
+            $h.push($(h))
+            // Set default highlight color
+            $(h).css('background-color', 'rgba(154, 154, 8, 1)')
+            // Get index of highlighted parent `div`
+            hDivIndex.push(($(h).closest('div').index() + 1).toString())
+            // Get html which includes the highlighted span element
+            html.push($(h).closest('div').html())
+            // Get page index
+            pIndex.push(($(h).closest('.page').index() + 1).toString())
+          })
+
+          var data = {
+            'pageIndex': pIndex,
+            'divIndex': hDivIndex,
+            'htmlContent': html,
+            'fileName': window.location.pathname.split('/').pop(),
+            'highlightColor': 'rgba(154, 154, 8, 1)'
+          }
+
+          $.ajax({
+            url: '/post-pdf-highlight',
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+              for (i=0; i<$h.length; i++) {
+                $h[i].closest('div').attr('data-highlight-id', data).addClass('highlight-id-'+data)
+              }
+            }
+          })
+        },
+      });
+
+      $(document).bind('pagerendered', function (e) {
+        $.ajax({
+          url: '/get-pdf-highlights',
+          dataType: 'json',
+          data: {
+            'fileName': window.location.pathname.split('/').pop()
+          },
+          contentType: 'application/json',
+          success: function (data) {
+            for (i=0; i<data['detail'].length; i++) {
+              var hId = data['detail'][i]['hid']
+              var pageIndex = data['detail'][i]['page_index']
+              var divIndex = data['detail'][i]['div_index']
+              var htmlContent = data['detail'][i]['html_content']
+              $('#viewer').children('.page:nth-child(' + pageIndex + ')').children('.textLayer').children('div:nth-child(' + divIndex + ')').attr('data-highlight-id', hId).addClass('highlight-id-'+hId).html(htmlContent)
+
+              for (j=0; j<data['color'].length; j++) {
+                if (data['color'][j]['id'] == hId) {
+                  var highlightColor = data['color'][j]['highlight_color']
+                  $('.highlight-id-' + hId).children('.highlighted').css('background-color', highlightColor)
+                  break
+                }
+              }
+            }
+
+            for (i=0; i<data['color'].length; i++) {
+              var id = data['color'][i]['id']
+              console.log(data['color'][i])
+              var hTop = data['color'][i]['highlight_top']
+              var comment = data['color'][i]['highlight_comment']
+              if (comment != "") {
+                if ($('#ann_'+id).length) {
+                  continue
+                }
+                for (j=0; j<data['detail'].length; j++) {
+                  if (data['detail'][j]['hid'] == id) {
+                    var pageIndex = data['detail'][j]['page_index']
+                    $('#viewer').children('.page:nth-child(' + pageIndex + ')').append('<div class="annotation-layer" id="ann_'+id+'" style="top: ' + hTop + ';"><p class="ann-text" contenteditable="true">'+comment+'</p><div class="annotation-save" contenteditable="false">Save</div></div>')
+                    break
+                  }
+                }
+              }
+            }
+          }
+        })
+      })
+
+      $(document).on('click', '.hm-color', function() {
+        $(this).children('.hmc-list').toggle()
+      })
+
+      var currentHighlight = ""
+
+      $(document).on('mouseenter', '.highlighted', function() {
+        if ($(this).closest('.page').children('.highlight-wrap').length == 0) {
+          $(this).closest('.page').append('<div class="highlight-wrap"><div class="highlight-menu"><div class="hm-color"><div class="hmc-list"><div class="hmcl-color yellow"></div><div class="hmcl-color orange"></div><div class="hmcl-color green"></div><div class="hmcl-color blue"></div><div class="hmcl-color gray"></div><div class="hmcl-color turquoise"></div><div class="hmcl-color purple"></div><div class="hmcl-color chartreuse"></div><div class="hmcl-color crimson"></div></div></div><svg class="hm-annotation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20"><g class="nc-icon-wrapper" fill="none" stroke="#FFF" stroke-width="5" stroke-linecap="square" stroke-miterlimit="10"><path d="M62 6H2v40h20l10 12 10-12h20z"/><path data-color="color-2" d="M16 20h32M16 32h18"/></g></svg><svg class="hm-delete" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20"><g class="nc-icon-wrapper" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="square" stroke-miterlimit="10"><path data-color="color-2" d="M22 10V2h20v8"/><path d="M54 18v40a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V18"/><path data-color="color-2" d="M32 31v18M22 31v18m20-18v18"/><path d="M4 10h56v8H4z"/></g></svg></div></div>')
+        }
+        var hTop = $(this).closest('div').css('top').split('px')[0] - 50
+        $(this).closest('.page').children('.highlight-wrap').css('top', hTop + 'px').show()
+
+        var bgColor = $(this).css('background-color')
+        bgColor = 'rgba(' + bgColor.split('rgb(').pop().split(')')[0].split(',').join(',') + ', 1)'
+        $(this).closest('.page').children('.highlight-wrap').children('.highlight-menu').children('.hm-color').css('background-color', bgColor)
+        currentHighlight = $(this).closest('div').attr('class')
+        $('#ann_' + currentHighlight.split('-').pop()).mouseenter()
+      })
+
+      $(document).on('mouseleave', '.highlighted', function() {
+        $(this).closest('.page').children('.highlight-wrap').hide()
+      })
+
+      $(document).on('mouseleave', '.highlight-wrap', function() {
+        $(this).hide()
+      })
+
+      $(document).on('mouseenter', '.highlight-wrap', function() {
+        $(this).show()
+      })
+
+      $(document).on('mousemove', '.highlighted', function(e) {
+        var offsetLeft = $(this).closest('.page').offset().left
+        $(this).closest('.page').children('.highlight-wrap').css('left', (e.pageX - offsetLeft - 50) + 'px')
+      })
+
+      $(document).on('click', '.hmcl-color', function() {
+        var bgColor = $(this).css('background-color')
+        bgColor = 'rgba(' + bgColor.split('rgb(').pop().split(')')[0].split(',').join(',') + ', 1)'
+        $('.'+currentHighlight).children('.highlighted').css('background-color', bgColor)
+        $(this).closest('.hm-color').css('background-color', bgColor.split(', 0.4').join(', 1'))
+
+        var id = currentHighlight.split('-').pop()
+
+        var data = {
+          'highlightColor': bgColor,
+          'id': id
+        }
+
+        $.ajax({
+          url: '/post-pdf-highlight-color',
+          type: 'POST',
+          data: JSON.stringify(data),
+          contentType: 'application/json; charset=utf-8',
+          success: function (data) {
+            console.log(data)
+          }
+        })
+      })
+
+      $(document).on('click', '.hm-annotation', function() {
+        var hTop = $('.'+currentHighlight).css('top')
+        var id = currentHighlight.split('-').pop()
+        if ($('#ann_'+id).length) {
+          alert('You already have annotation layer for this highlight.')
+          return false
+        }
+        $(this).closest('.page').append('<div id="ann_'+id+'" class="annotation-layer" style="top: ' + hTop + ';"><p class="ann-text" contenteditable="true">Comment here</p><div contenteditable="false" class="annotation-save">Save</div></div>')
+      })
+
+      $(document).on('click', '.annotation-layer .annotation-save', function(e) {
+        e.stopImmediatePropagation()
+        var id = $(this).parent().attr('id').split('_').pop()
+        var hTop = $('.highlight-id-'+id).css('top')
+        var comment = $(this).siblings('p').text()
+        console.log(comment)
+        var data = {
+          'id': id,
+          'top': hTop,
+          'comment': comment
+        }
+        $.ajax({
+          url: '/post-pdf-highlight-comment',
+          type: 'POST',
+          data: JSON.stringify(data),
+          contentType: 'application/json; charset=utf-8',
+          success: function (data) {
+            console.log(data)
+            alert('Comment saved successfully')
+          }
+        })
+      })
+
+      $(document).on('mouseenter', '.annotation-layer', function() {
+        var $this = $(this)
+        $('.annotation-layer').each(function() {
+          $(this).removeClass('focus')
+        })
+        $this.addClass('focus')
+      })
+
+      $(document).on('click', '.hm-delete', function() {
+        var retVal = confirm("Do you want to delete this highlight?");
+        if( retVal == true ) {
+          var id = currentHighlight.split('-').pop()
+
+          var data = {
+            'id': id
+          }
+
+          $.ajax({
+            url: '/delete-pdf-highlight',
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+              console.log(data)
+              $('.'+currentHighlight).each(function() {
+                var highlightContents = $(this).contents()
+                var html = ""
+                if (highlightContents.length == 3) {
+                  html = highlightContents[0].data + highlightContents[1].innerText + highlightContents[2].data
+                } else if (highlightContents.length == 2) {
+                  if (highlightContents[0].nodeName == 'SPAN') {
+                    html = highlightContents[0].innerText + highlightContents[1].data
+                  } else {
+                    html = highlightContents[0].data + highlightContents[1].innerText
+                  }
+                } else if (highlightContents.length == 1) {
+                  html = highlightContents[0].innerText
+                }
+                $(this).html(html)
+              })
+              
+              $('#ann_'+id).remove()
+            }
+          })
+        }
+      })
+    })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,215 @@
+body {
+  display: block!important;
+  font-family: Georgia, serif!important;
+  font-size: 21px!important;
+  line-height: 1.58!important;
+  background: #FFFFF8!important;
+  width: 700px!important;
+  height: auto;
+  margin: 50px auto!important;
+  padding: 60px 0!important;
+}
+
+p {
+  font-family: Georgia, serif!important;
+  font-size: 21px!important;
+  line-height: 1.58!important;
+}
+
+img,image {
+  max-width: 600px!important;
+  max-height: 600px!important;
+}
+
+body.perc150, body.perc150 p {
+  font-size: 25px!important;
+  line-height: 1.64!important;
+}
+
+body.perc200, body.perc200 p {
+  font-size: 29px!important;
+}
+
+.highlighted {
+	position: relative;
+	background-color: rgb(154, 154, 8);
+  color: white;
+  cursor: pointer;
+}
+
+.epub-highlight-menu-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 50px;
+}
+
+.epub-highlight-menu {
+  background: rgba(0,0,0,0.8);
+  width: 100px;
+  height: 40px;
+}
+
+.hm-color {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  background: rgb(154, 154, 8);
+  cursor: pointer;
+}
+
+.hm-annotation, .hm-delete {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+  cursor: pointer;
+}
+
+.hm-delete {
+  left: 70px;
+}
+
+.hm-color .hmc-list {
+  display: none;
+  position: absolute;
+  top: -112px;
+  left: -10px;
+  width: 100px;
+  height: 102px;
+  background: rgba(0,0,0,0.8);
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.hm-color .hmc-list .hmcl-color {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background: rgb(154, 154, 8);
+    box-sizing: border-box;
+}
+
+.hm-color .hmc-list .hmcl-color.active, .hm-color .hmc-list .hmcl-color:hover {
+  border: 1px solid #FF4848;
+}
+
+.hm-color .hmc-list .hmcl-color.orange {
+    left: 40px;
+    background: rgb(199, 138, 25);
+}
+
+.hm-color .hmc-list .hmcl-color.green {
+    left: 70px;
+    background: rgb(4, 195, 4);
+}
+
+.hm-color .hmc-list .hmcl-color.blue {
+    top: 40px;
+    background: rgb(93, 93, 255);
+}
+
+.hm-color .hmc-list .hmcl-color.gray {
+    top: 40px;
+    left: 40px;
+    background: rgb(160, 160, 160);
+}
+
+.hm-color .hmc-list .hmcl-color.turquoise {
+    top: 40px;
+    left: 70px;
+    background: rgb(26, 193, 177);
+}
+
+.hm-color .hmc-list .hmcl-color.purple {
+    top: 70px;
+    background: rgb(165, 24, 236);
+}
+
+.hm-color .hmc-list .hmcl-color.chartreuse {
+    top: 70px;
+    left: 40px;
+    background: rgb(113, 193, 32);
+}
+
+.hm-color .hmc-list .hmcl-color.crimson {
+    top: 70px;
+    left: 70px;
+    background: rgb(237, 20, 61);
+}
+
+.annotation-layer {
+  position: absolute;
+  top: 0;
+  right: 100px;
+  width: 240px;
+  height: 160px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  color: #161616;
+  background: white;
+  outline: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #DFDFDF;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.annotation-layer.focus {
+  z-index: 1;
+}
+
+.annotation-layer .ann-text {
+  height: 110px;
+  overflow-y: auto;
+  outline: none;
+  margin: 0;
+}
+
+.annotation-layer .annotation-save {
+    width: 100%;
+    height: 30px;
+    background: #ff4848;
+    text-align: center;
+    padding-top: 2px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+}
+
+@media screen 
+  and (max-width: 1100px) {
+
+    body {
+      width: 540px!important;
+    }
+
+}
+
+@media screen 
+  and (max-width: 860px) {
+
+    body {
+      width: 420px!important;
+    }
+
+}
+
+@media screen
+  and (max-width: 700px) {
+
+    body {
+      width: 300px!important;
+    }
+
+}

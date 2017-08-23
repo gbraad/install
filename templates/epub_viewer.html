@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-Equiv="Cache-Control" Content="no-cache" />
+    <meta http-Equiv="Pragma" Content="no-cache" />
+    <meta http-Equiv="Expires" Content="0" />
+	<title>{{.fileName}}</title>
+	<link rel="icon" type="image/png" href="/static/img/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/static/img/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/static/img/favicon-96x96.png" sizes="96x96">
+	<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="epub-body">
+	<div id="progressBar">
+  		<div class="progress-container">
+    		<span class="progress-bar"></span>
+  		</div>
+	</div>
+	<header>
+		<div class="uploading-progress">Uploading...</div>
+		<div class="header-container">
+			<a href="/" class="logo">
+				<svg width="30" height="30" viewBox="290 230 280.089 340"><defs><style>.cls-1,.cls-2{fill:#676767;fill-rule:evenodd}.cls-2{fill:#fff}</style></defs><path id="Path_3" data-name="Path 3" class="cls-1" d="M281 140s-60 62.4-60 120c0 38.879 20 70 20 70 0 8.1-10 10-10 10-26.02-17.77-53.433-20.391-70-19.938a20 20 0 0 1-39.994 0c-16.57-.453-43.983 2.168-70 19.938 0 0-10-1.9-10-10 0 0 20-31.121 20-70C61 202.4 1 140 1 140a6.562 6.562 0 0 1 3.639-6.729c13.243-5.249 74.014-6.924 116.361 16.138v-14.784a39.979 39.979 0 0 1-.576-68.919C115.544 7.654 81 10 81 10V0c39.885 0 48.582 37.593 50.108 61.238a40.139 40.139 0 0 1 19.784 0C152.418 37.593 161.114 0 201 0v10s-34.544-2.346-39.424 55.706a39.979 39.979 0 0 1-.576 68.919v14.784c42.347-23.062 103.118-21.387 116.361-16.138A6.562 6.562 0 0 1 281 140z" transform="translate(289.044 230)"/><path id="Path_4" data-name="Path 4" class="cls-2" d="M241 170s-60 0-89.88 19.945L151 180c.014.268 20-20 89.989-20-.033.812.011 10 .011 10zm0-10h-.011c.003-.076.006-.084.011 0zM71 300s14.377-10 60-10v10s-30 0-60 10zm10-40l.081-9.986C121 250 131 260 131 260l-.134 9.875C111 260 80.976 261.495 81 260zm-20-50l.081-9.986C111 200 131 220 131 220l-.134 9.875C101 210 60.976 211.495 61 210zm-20-40s.044-9.188.011-10C111 160 130.986 180.268 131 180l-.12 9.945C101 170 41 170 41 170zm.011-10H41c0-.084.008-.076.011 0zm179.908 40.014L221 210c.024 1.495-40 0-69.866 19.875L151 220s20-20 69.919-19.986zm-20 50L201 260c.024 1.495-30 0-49.866 9.875L151 260s10-10 49.919-9.986zM211 310c-30-10-60-10-60-10v-10c45.623 0 60 10 60 10z" transform="translate(289.044 230)"/></svg>
+				LibreRead <span>beta</span></a>
+			<div class="header-nav epub-nav">
+				<a href="/" class="hn-zoom-in-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25"><path d="M32 1C14.9 1 1 14.9 1 32s13.9 31 31 31 31-13.9 31-31S49.1 1 32 1zm18 34c0 .6-.4 1-1 1H36v13c0 .6-.4 1-1 1h-6c-.6 0-1-.4-1-1V36H15c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h13V15c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v13h13c.6 0 1 .4 1 1v6z" class="nc-icon-wrapper" fill="#676767"/></svg>
+					<label>Zoom in</label>
+				</a>
+				<a href="/" class="hn-zoom-out-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25"><path d="M32 1C14.9 1 1 14.9 1 32s13.9 31 31 31 31-13.9 31-31S49.1 1 32 1zm18 34c0 .6-.4 1-1 1H15c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h34c.6 0 1 .4 1 1v6z" class="nc-icon-wrapper" fill="#676767"/></svg>
+					<label>Zoom out</label>
+				</a>
+				<a href="/" class="hn-fullscreen-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25"><g class="nc-icon-wrapper" fill="#676767"><path d="M39.707 38.293L51 49.586l9.293-9.293A1 1 0 0 1 62 41v20a1 1 0 0 1-1 1H40.98a1 1 0 0 1-.578-1.816L49.586 51 38.293 39.707a.999.999 0 1 1 1.414-1.414zM3 2h20a1 1 0 0 1 .707 1.707L14.414 13l11.293 11.293a.999.999 0 1 1-1.414 1.414L13 14.414l-9.293 9.293A1 1 0 0 1 2 23V3a1 1 0 0 1 1-1z"/><path data-color="color-2" d="M24.293 38.293L13 49.586l-9.293-9.293A1 1 0 0 0 2 41v20a1 1 0 0 0 1 1h20.02a1 1 0 0 0 .578-1.816L14.414 51l11.293-11.293a.999.999 0 1 0-1.414-1.414zM61 2H41a1 1 0 0 0-.707 1.707L49.586 13 38.293 24.293a.999.999 0 1 0 1.414 1.414L51 14.414l9.293 9.293A1 1 0 0 0 62 23V3a1 1 0 0 0-1-1z"/></g></svg>
+					<label>Fullscreen</label>
+				</a>
+				<a href="/" class="hn-download-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48"><path d="M38 18h-8V6H18v12h-8l14 14 14-14zM10 36v4h28v-4H10z" class="nc-icon-wrapper" fill="#676767"/></svg>
+					<label>Download book</label>
+				</a>
+				<a href="/" class="hn-edit-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48"><path d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z" class="nc-icon-wrapper" fill="#676767"/></svg>
+					<label>Edit Metadata</label>
+				</a>
+				<a href="/" class="hn-delete-nav">
+					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48"><path d="M12 38c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V14H12v24zm4.93-14.24l2.83-2.83L24 25.17l4.24-4.24 2.83 2.83L26.83 28l4.24 4.24-2.83 2.83L24 30.83l-4.24 4.24-2.83-2.83L21.17 28l-4.24-4.24zM31 8l-2-2H19l-2 2h-7v4h28V8z" class="nc-icon-wrapper" fill="#676767"/></svg>
+					<label>Delete book</label>
+				</a>
+			</div>
+			<div class="header-nav-small">
+			</div>
+		</div>
+	</header>
+	<div class="total-pages">{{.totalPages}}</div>
+	<iframe id="epubIframe" spine-idref="{{.idRef}}" src="{{.filePath}}" width="100%" height="100%" frameborder="0" style="display: none;"></iframe>
+	<div class="epub-prev none">
+		<svg width="33" height="20" viewBox="0 0 33 20" xmlns="http://www.w3.org/2000/svg"><title>Group 2</title><g stroke="#676767" stroke-width="3" fill="none" fill-rule="evenodd"><path d="M33 10.143H3"/><path stroke-linecap="square" d="M10.143 17.286L3 10.143 10.143 3"/></g></svg>
+	</div>
+	<div class="epub-next">
+		<svg width="33" height="20" viewBox="0 0 33 20" xmlns="http://www.w3.org/2000/svg"><title>Group 3</title><g stroke="#676767" stroke-width="3" fill="none" fill-rule="evenodd"><path d="M0 10.143h30"/><path stroke-linecap="square" d="M22.857 3L30 10.143l-7.143 7.143"/></g></svg>
+	</div>
+	<div class="edit-metadata-wrapper">
+		<div class="emw-close">Close</div>
+		<div class="emw-dialog">
+			<form enctype="multipart/form-data">
+				<label>Book Metadata</label>
+				<input type="text" name="filename" value="{{.fileName}}" style="display: none;">
+				<input type="text" name="title" class="emwd-title">
+				<input type="text" name="author" class="emwd-author">
+				<img src="/" class="emwd-cover">
+				<input type="file" name="cover" class="emwd-cover-upload" style="display: none;">
+				<input type="button" class="secondary-button emwd-change-cover" value="Change image">
+				<input type="submit" value="Save changes" class="emwd-submit">
+			</form>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+  		integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  		crossorigin="anonymous"></script>
+  	<script type="text/javascript" src="/static/js/TextHighlighter.min.js"></script>
+	<script type="text/javascript">
+		var query = window.location.href.split('#')[1]
+		var pageChapter, term
+		if (query) {
+			pageChapter = query.split('&')[0].split('page=')[1]
+			term = query.split('&')[1].split('term=')[1]
+		}
+
+		var iframe = document.getElementById('epubIframe');
+		var iframe2 = document.getElementById('epubIframe2');
+
+  		$(function() {
+			$('#epubIframe').bind('load', function() {
+				if (term) {
+					$('#epubIframe')[0].contentWindow.find(term)
+				}
+
+				$(this).contents().find('head').append(
+        			$('<link/>', { rel: 'stylesheet', href: '/static/css/epub_iframe_style.css', type: 'text/css' })
+        		)
+
+        		$(this).show()
+        
+        		$(this).contents().find("body").on('click', function(e) { 
+        			var $target = e.target
+        			if (e.target.nodeName == 'a') {
+        				console.log($target.attributes['href'].textContent)
+        				var hrefPath = $target.attributes['href'].textContent
+        				hrefPath = '{{.packagePath}}' + '/' + hrefPath
+        				$('#epubIframe').attr('src', hrefPath)
+        			}
+        		})
+			})
+
+			function nextFragment(url) {
+				$('.progress-bar').css('width', '0%');
+				$('header').removeClass('nav-up').addClass('nav-down');
+				$('.epub-prev,.epub-next').removeClass('none')
+				var href = $('#epubIframe').attr('src').split('?random=')[0]
+				$.ajax({
+					url: url,
+					data: {
+						href: href
+					},
+					contentType: 'application/json',
+            		success: function(data) {
+            			console.log(data)
+            			$('#epubIframe').hide()
+                		$('#epubIframe').attr('src', data.href_path + '?random=' + (new Date()).getTime() + Math.floor(Math.random() * 1000000))
+                		if (data.left_none == true) $('.epub-prev').addClass('none')
+                		if (data.right_none == true) $('.epub-next').addClass('none')
+            		}
+				})
+			}
+
+			if (pageChapter) {
+				$('#epubIframe').attr('src', '{{.packagePath}}' + '/' + pageChapter)
+			}
+
+			$('.epub-next').click(function() {
+				if ($(this).hasClass('none')) return false;
+				nextFragment('/load-epub-fragment/{{.fileName}}/next');
+			})
+
+			$('.epub-prev').click(function() {
+				if ($(this).hasClass('none')) return false;
+				nextFragment('/load-epub-fragment/{{.fileName}}/prev');
+			})
+
+			function getRandomNumber() {
+				var randomNumber = Math.floor(Math.random()*89999+10000)
+        		var highlightExists = $('.highlight-id-'+randomNumber).length
+        		while (highlightExists) {
+        			randomNumber = Math.floor(Math.random()*89999+10000)
+        			highlightExists = $('.highlight-id-'+randomNumber).length
+        		}
+        		return randomNumber
+			}
+
+			var currentHighlight = ''
+
+			function saveHighlight() {
+                var fileName = '{{.fileName}}'
+                var href = $('#epubIframe').attr('src').split('?random=')[0]
+                var html = $('#epubIframe').contents().find('html').html()
+                    			
+                var htmlAttributes = $('#epubIframe').contents().find('html')[0].attributes
+                var htmlTag = '<html'
+                for (i=0; i < htmlAttributes.length; i++) {
+                	htmlTag += ' ' + htmlAttributes[i].nodeName + '="' + htmlAttributes[i].nodeValue + '"'
+                }
+                htmlTag += '>'
+
+                html = htmlTag + html + '</html>'
+
+                var data = {
+                	'fileName': fileName,
+                    'href': href,
+                    'html': html
+                }
+
+                $.ajax({
+            		url: '/save-epub-highlight',
+            		type: 'POST',
+            		data: JSON.stringify(data),
+            		contentType: 'application/json; charset=utf-8',
+            		success: function (data) {
+            			console.log(data)
+            		}
+          		})
+            }
+
+			iframe.onload = function () {
+    			var hltr = new TextHighlighter(
+        			iframe.contentDocument.body, {
+        				onBeforeHighlight: function (range) {
+        					console.log(range.commonAncestorContainer.parentElement)
+          					if (($(range.commonAncestorContainer.parentElement).attr('class') == 'ann-text') || ($(range.commonAncestorContainer.parentElement).attr('class') == 'annotation-save'))return false
+          					return window.confirm('Selected text: ' + range + '\nReally highlight?')
+        				},
+        				onAfterHighlight: function (range, highlights) {
+        					var randomNumber = getRandomNumber()
+        					$(iframe.contentDocument.body).append('<div class="epub-highlight-menu-wrap"><div class="epub-highlight-menu"><div class="hm-color"><div class="hmc-list"><div class="hmcl-color yellow"></div><div class="hmcl-color orange"></div><div class="hmcl-color green"></div><div class="hmcl-color blue"></div><div class="hmcl-color gray"></div><div class="hmcl-color turquoise"></div><div class="hmcl-color purple"></div><div class="hmcl-color chartreuse"></div><div class="hmcl-color crimson"></div></div></div><svg class="hm-annotation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20"><g class="nc-icon-wrapper" fill="none" stroke="#FFF" stroke-width="5" stroke-linecap="square" stroke-miterlimit="10"><path d="M62 6H2v40h20l10 12 10-12h20z"/><path data-color="color-2" d="M16 20h32M16 32h18"/></g></svg><svg class="hm-delete" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20"><g class="nc-icon-wrapper" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="square" stroke-miterlimit="10"><path data-color="color-2" d="M22 10V2h20v8"/><path d="M54 18v40a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4V18"/><path data-color="color-2" d="M32 31v18M22 31v18m20-18v18"/><path d="M4 10h56v8H4z"/></g></svg></div></div>')
+        					highlights.map(function(h) {
+        						$(h).css('background-color', 'rgb(154, 154, 8)')
+        						$(h).addClass('highlight-id-'+randomNumber)
+        						$(h).attr('data-offset-left', h.offsetLeft)
+        						$(h).attr('data-offset-top', h.offsetTop)
+                    		})
+                    		saveHighlight()
+                		},
+        			}
+    			)
+
+    			$(iframe.contentDocument.body).on('mouseenter', '.highlighted', function() {
+    				currentHighlight = $(this).attr('class').split(' ').pop()
+    				var top = (parseInt($(this).attr('data-offset-top')) - 43) + 'px'
+    				var left = $(this).attr('data-offset-left') + 'px'
+    				$(iframe.contentDocument.body).children('.epub-highlight-menu-wrap').css({
+    					'top': top,
+    					'left': left
+    				}).show()
+    				$(iframe.contentDocument.body).children('#ann_' + currentHighlight.split('-').pop()).mouseenter()
+    			})
+
+    			$(iframe.contentDocument.body).on('mouseenter', '.epub-highlight-menu-wrap', function() {
+    				$(this).show()
+    			})
+
+    			$(iframe.contentDocument.body).on('mousemove', '.highlighted', function(e) {
+        			var top = (e.pageY - 43) + 'px'
+        			var left = (e.pageX - 50) + 'px'
+        			$(iframe.contentDocument.body).children('.epub-highlight-menu-wrap').css({
+    					'top': top,
+    					'left': left
+    				}).show()
+      			})
+
+      			$(iframe.contentDocument.body).on('mouseleave', '.highlighted', function() {
+      				$(iframe.contentDocument.body).children('.epub-highlight-menu-wrap').hide()
+      			})
+
+    			$(iframe.contentDocument).on('click', function(e) {
+    				var c = $(e.target).attr('class')
+    				if ((c != 'epub-highlight-menu') && (c != 'hm-color') && (c != 'hm-annotation') && (c != 'hm-delete')) {
+    					$(iframe.contentDocument.body).children('.epub-highlight-menu-wrap').hide()
+    				}
+    			})
+
+    			$(iframe.contentDocument).on('click', '.hm-color', function(e) {
+        			$(this).children('.hmc-list').toggle()
+      			})
+
+      			$(iframe.contentDocument).on('click', '.hmcl-color', function() {
+      				var bgColor = $(this).css('background-color')
+      				$(iframe.contentDocument.body).find('.'+currentHighlight).css('background-color', bgColor)
+      				saveHighlight()
+      			})
+
+      			$(iframe.contentDocument).on('click', '.hm-annotation', function() {
+      				var hTop = $(iframe.contentDocument.body).find('.'+currentHighlight).attr('data-offset-top') + 'px'
+        			var id = currentHighlight.split('-').pop()
+        			if ($(iframe.contentDocument.body).children('#ann_'+id).length) {
+          				alert('You already have annotation layer for this highlight.')
+          				return false
+        			}
+        			$(iframe.contentDocument.body).append('<div id="ann_'+id+'" class="annotation-layer" style="top: ' + hTop + ';"><p class="ann-text" contenteditable="true">Comment here...</p><div contenteditable="false" class="annotation-save">Save</div></div>')
+        			saveHighlight()
+      			})
+
+      			$(iframe.contentDocument).on('click', '.annotation-layer .annotation-save', function() {
+      				saveHighlight()
+      				alert('Comment saved successfully')
+      			})
+
+      			$(iframe.contentDocument).on('mouseenter', '.annotation-layer', function() {
+        			var $this = $(this)
+        			$(iframe.contentDocument.body).children('.annotation-layer').each(function() {
+          				$(this).removeClass('focus')
+        			})
+        			$this.addClass('focus')
+      			})
+
+      			$(iframe.contentDocument).on('click', '.hm-delete', function() {
+      				var retVal = confirm("Do you want to delete this highlight?");
+        			if( retVal == true ) {
+          				var id = currentHighlight.split('-').pop()
+          				$(iframe.contentDocument.body).find('.'+currentHighlight).each(function() {
+          					$(this).replaceWith($(this).html())
+          				})
+          				$(iframe.contentDocument.body).children('#ann_'+id).remove()
+          				$(iframe.contentDocument.body).children('.epub-highlight-menu-wrap').hide()
+          				saveHighlight()
+          			}
+      			})
+
+      			$(iframe.contentDocument).on('keyup', function(e) {
+      				if (e.which == '37') nextFragment('/load-epub-fragment/{{.fileName}}/prev')
+      				else if (e.which == '39') nextFragment('/load-epub-fragment/{{.fileName}}/next')
+      			})
+
+				// Hide Header on on scroll down
+				var didScroll;
+				var lastScrollTop = 0;
+				var delta = 5;
+				var navbarHeight = $('header').outerHeight();
+
+				$(iframe.contentWindow).scroll(function(event){
+    				didScroll = true;
+				});
+
+				setInterval(function() {
+    				if (didScroll) {
+        				hasScrolled();
+        				didScroll = false;
+    				}
+				}, 250);
+
+				function hasScrolled() {
+    				var st = $(iframe.contentDocument).scrollTop();
+    
+    				// Make sure they scroll more than delta
+    				if(Math.abs(lastScrollTop - st) <= delta)
+        				return;
+    
+    				// If they scrolled down and are past the navbar, add class .nav-up.
+    				// This is necessary so you never see what is "behind" the navbar.
+    				if (st > lastScrollTop && st > navbarHeight){
+        				// Scroll Down
+        				$('header').removeClass('nav-down').addClass('nav-up');
+    				} else {
+        				// Scroll Up
+        				$('header').removeClass('nav-up').addClass('nav-down');
+        				// if((st + $(iframe.contentWindow).height()) < $(iframe.contentDocument).height()) {
+            				// $('header').removeClass('nav-up').addClass('nav-down');
+        				// }
+    				}
+    
+    				lastScrollTop = st;
+				}
+
+				var getMax = function(){
+    				return $(iframe.contentDocument).height() - $(window).height();
+  				}
+    
+  				var getValue = function(){
+    				return $(iframe.contentDocument).scrollTop();
+  				}
+    
+    			var progressBar = $('.progress-bar'), 
+        			max, value, width;
+        
+    			var getWidth = function() {
+      				// Calculate width in percentage
+      				value = getValue();
+      				max = getMax();
+      				width = (value/max) * 100;
+      				width = width + '%';
+      				return width;
+    			}
+        
+    			var setWidth = function(){
+      				progressBar.css({ width: getWidth() });
+    			}
+        
+    			$(iframe.contentDocument).on('scroll', setWidth);
+    			
+    			$(window).on('resize', function(){
+      				// Need to reset the Max attr
+      				max = getMax();
+      				setWidth();
+    			});
+
+			}
+
+      		$(document).on('keyup', function(e) {
+      			if (e.which == '37') nextFragment('/load-epub-fragment/{{.fileName}}/prev')
+      			else if (e.which == '39') nextFragment('/load-epub-fragment/{{.fileName}}/next')
+      		})
+
+			$(document).on('click', '.hn-zoom-in-nav', function(e) {
+      			e.preventDefault()
+      			if ($(iframe.contentDocument.body).hasClass('perc150')) {
+      				$(iframe.contentDocument.body).removeClass('perc150').removeClass('perc200').addClass('perc200')
+      			} else if ($(iframe.contentDocument.body).hasClass('perc200')) {
+      				return false
+      			} else {
+      				$(iframe.contentDocument.body).removeClass('perc150').removeClass('perc200').addClass('perc150')
+      			}
+      		})
+
+      		$(document).on('click', '.hn-zoom-out-nav', function(e) {
+      			e.preventDefault()
+      			if ($(iframe.contentDocument.body).hasClass('perc150')) {
+      				$(iframe.contentDocument.body).removeClass('perc150')
+      			} else if ($(iframe.contentDocument.body).hasClass('perc200')) {
+      				$(iframe.contentDocument.body).removeClass('perc200').addClass('perc150')
+      			}
+      		})
+
+			$(document).on('click', '.hn-fullscreen-nav', function(e) {
+      			e.preventDefault()
+      			var docelem = document.documentElement
+      			if (docelem.requestFullscreen) {
+        			docelem.requestFullscreen()
+    			}
+    			else if (docelem.mozRequestFullScreen) {
+        			docelem.mozRequestFullScreen()
+    			}
+    			else if (docelem.webkitRequestFullscreen) {
+        			docelem.webkitRequestFullscreen()
+    			}
+    			else if (docelem.msRequestFullscreen) {
+        			docelem.msRequestFullscreen()
+    			}
+      		})
+
+      		$(document).on('click', '.hn-download-nav', function(e) {
+      			e.preventDefault()
+      			var fileName = window.location.pathname.split('/').pop();
+				var fileURL = "/uploads/" + fileName;
+				window.location.href = fileURL
+      		})
+
+      		$(document).on('click', '.hn-edit-nav', function(e) {
+      			e.preventDefault()
+      			var fileName = window.location.pathname.split('/').pop();
+      			var data = {
+      				'fileName': fileName
+      			}
+				$.ajax({
+            		url: '/get-book-metadata',
+            		type: 'GET',
+            		data: data,
+            		contentType: "application/json; charset=utf-8",
+            		success: function (data) {
+            			console.log(data)
+            			$('.emwd-title').val(data.title)
+            			$('.emwd-author').val(data.author)
+            			$('.emwd-cover').attr('src', data.cover)
+            			$('.edit-metadata-wrapper').show()
+            		}
+          		})
+      		})
+
+      		$(document).on('click', '.emw-close', function() {
+      			$('.edit-metadata-wrapper').hide()
+      		})
+
+      		$(document).on('click', '.emwd-change-cover', function() {
+      			$('.emwd-cover-upload').click()
+      		})
+
+      		function showCoverPreview(input) {
+      			if (input.files && input.files[0]) {
+        			var reader = new FileReader();
+
+        			reader.onload = function (e) {
+            			$('.emwd-cover').attr('src', e.target.result);
+        			}
+
+        			reader.readAsDataURL(input.files[0]);
+    			}
+      		}
+
+      		$('.emwd-cover-upload').change(function() {
+      			showCoverPreview(this)
+      		})
+
+      		$(document).on('click', '.emwd-submit', function(e) {
+      			e.preventDefault()
+      			var formData = new FormData($('.emw-dialog form')[0]);
+
+      			$.ajax({
+      				url: '/edit-book/{{.fileName}}',
+        			type: 'POST',
+        			data: formData,
+        			success: function (data) {
+            			alert(data)
+            			$('.edit-metadata-wrapper').hide()
+        			},
+        			cache: false,
+        			contentType: false,
+        			processData: false
+      			})
+      		})
+  		})
+	</script>
+</body>
+</html>

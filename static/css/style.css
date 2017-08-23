@@ -1,0 +1,1262 @@
+/*
+Copyright 2017 Nirmal Kumar
+
+This file is part of LibreRead.
+
+LibreRead is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+LibreRead is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with LibreRead.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 16px;
+	background: #FFFFF8;
+}
+
+*, *::after, *::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+::selection {
+  background: #FF4848;
+  color: white;
+}
+
+::-moz-selection {
+  background: #FF4848;
+  color: white;
+}
+
+.s-bg {
+  background-image: url('../img/lp_bg.png');
+  background-position: 0 -120px;
+}
+
+.epub-body {
+  overflow: hidden;
+}
+
+#progressBar {
+  /* Positioning */
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  /* Dimensions */
+  width: 100%;
+  height: .25em;
+
+  /* Reset the apperance */  
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+
+  /* Get rid of the default border in Firefox/Opera. */
+  border: none;
+
+  /* For Firefox/IE10+ */
+  background-color: transparent;
+
+  /* For IE10+, color of the progress bar */
+  color: #CCCCCC;
+
+  z-index: 999999;
+}
+
+#progressBar::-webkit-progress-bar {
+  background-color: transparent;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: .25em;
+  display: block;
+}
+
+.progress-bar {
+  background-color: #CCCCCC;
+  width: 0%;
+  display: block;
+  height: inherit;
+}
+
+#epubIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #FFFFF8;
+  z-index: 1;
+  overflow-x: hidden;
+}
+
+.epub-prev, .epub-next {
+  position: fixed;
+  top: 50%;
+  left: 50px;
+  z-index: 999;
+  cursor: pointer;
+}
+
+.epub-next {
+  left: inherit;
+  right: 50px;
+}
+
+.epub-body .total-pages {
+  position: fixed;
+  bottom: 20px;
+  z-index: 2;
+  left: 50px;
+  color: #161616;
+}
+
+.edit-metadata-wrapper {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 9999;
+}
+
+.emw-close {
+  position: absolute;
+  font-weight: 700;
+  top: 15px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.emw-dialog {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  width: 500px;
+  background: white;
+  border: 1px solid #ccc;
+  margin-left: -250px;
+  padding: 30px;
+}
+
+.emw-dialog label {
+  display: block;
+  font-weight: 700;
+  text-align: center;
+}
+
+.emw-dialog input[type="text"] {
+  display: block;
+  width: 100%;
+  height: 34px;
+  font-size: 16px;
+  padding: 0 10px;
+  border: 1px solid #B1B1B1;
+  margin-top: 30px;
+  outline: none;
+}
+
+.emw-dialog input[type="text"]:focus {
+  border: 1px solid #FF4848;
+}
+
+.emwd-cover {
+  display: block;
+  margin-top: 30px;
+  width: 180px;
+  min-height: 110px;
+}
+
+.emwd-change-cover {
+  position: absolute;
+  top: 208px;
+  margin-left: 210px;
+}
+
+.secondary-button {
+  display: block;
+  font-size: 16px;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-bottom: .6em;
+  padding-top: .4em;
+  color: white;
+  background: #636363;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 60px;
+	background: white;
+	margin: 0 auto;
+	border-bottom: 1px solid #DFDFDF;
+	z-index: 999;
+	transition: top 0.2s ease-in-out;
+}
+
+.auth-message {
+  width: 100%;
+  margin-top: 140px;
+  text-align: center;
+  padding: 0 30px;
+}
+
+.nav-up {
+    top: -60px;
+}
+
+header .uploading-progress {
+  display: none;
+  position: absolute;
+  top: 0;
+  left:0;
+  background: #FF4848;
+  color: white;
+}
+
+header .header-container {
+	width: 1440px;
+	margin: 0 auto;
+	padding: 0 30px;
+	overflow: hidden;
+}
+
+.logo {
+	float: left;
+	font-family: 'Droid Sans', sans-serif;
+	font-size: 20px;
+  font-weight: 700;
+	color: #676767;
+	text-decoration: none;
+	margin-top: 18px;
+	cursor: pointer;
+}
+
+.logo svg {
+  float: left;
+  margin-top: -7px;
+  margin-right: 3px;
+}
+
+.logo:hover svg .cls-1 {
+  fill: #FF4848;
+}
+
+.logo span {
+  font-size: 11px;
+}
+
+.logo:hover {
+	color: #FF4848;
+}
+
+.search-box {
+	float: left;
+	width: 480px;
+	height: 36px;
+	font-size: 14px;
+	border: 1px solid #B1B1B1;
+	margin-top: 12px;
+	margin-left: 30px;
+	padding: 0 10px;
+	outline: none;
+}
+
+.search-box:focus {
+	border: 1px solid #FF4848;
+}
+
+.search-dropdown {
+	display: none;
+	position: absolute;
+  top: 50px;
+  margin-left: 189px;
+	width: 480px;
+  max-height: 480px;
+  background: white;
+  border: 1px solid #CCCCCC;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.search-dropdown label {
+	display: block;
+  width: 100%;
+  font-weight: 700;
+  color: #676767;
+  text-align: center;
+  background: rgba(96, 96, 96, 0.13);
+  margin-bottom: 20px;
+  padding: 3px;
+  clear: both;
+}
+
+.search-dropdown a {
+	display: block;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.search-dropdown a img {
+	float: left;
+	width: 70px;
+  margin-right: 10px;
+}
+
+.search-dropdown a .sdtl-title {
+	float: right;
+  width: 363px;
+  color: #161616;
+  font-weight: 700;
+}
+
+.search-dropdown a .sdtl-title span {
+  font-weight: normal;
+}
+
+.search-dropdown a .sdtl-author {
+	float: right;
+  width: 363px;
+  font-size: 14px;
+  color: #676767;
+  margin-top: 5px;
+}
+
+.search-dropdown a .sdtl-description {
+	float: right;
+  width: 363px;
+  margin-top: 10px;
+  color: #161616;
+}
+
+.search-dropdown a .sdtl-description em {
+	color: #FF4848;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.search-dropdown a:hover .sdtl-title {
+	color: #FF4848;
+}
+
+.menu-icon {
+	display: none;
+}
+
+.header-nav {
+	float: right;
+}
+
+.header-nav-small {
+	display: none;
+	position: fixed;
+  background: white;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  padding: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.header-nav-small .hns-close {
+  float: right;
+  font-weight: 600;
+  margin-top: -12px;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+
+.header-nav a {
+	float: left;
+	margin-top: 17.5px;
+	margin-right: 30px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.header-nav .hn-sign-nav {
+	margin-right: 0;
+}
+
+.header-nav-small a {
+	float: none;
+	display: block;
+	border: 1px solid #DFDFDF;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 20px;
+	padding: 20px;
+}
+
+.header-nav a.active svg g, .header-nav a.active svg path {
+	stroke: #FF4848;
+}
+
+.header-nav a.active label {
+	color: #FF4848;
+}
+
+.header-nav a:nth-child(4) {
+	margin-right: 0;
+}
+
+.epub-nav a:nth-child(4) {
+  margin-right: 30px;
+}
+
+.epub-nav a:nth-child(6) {
+  margin-right: 0;
+}
+
+.header-nav-small a {
+  clear: both;
+	overflow: hidden;
+}
+
+.header-nav svg, .header-nav-small svg {
+	float: left;
+	margin-right: 5px;
+}
+
+.header-nav-small svg {
+	margin-right: 20px;
+}
+
+.header-nav a:hover svg g, 
+.header-nav a:hover svg path, 
+.header-nav a:hover svg g {
+	fill: #FF4848;
+}
+
+.epub-nav a:hover svg g, 
+.epub-nav a:hover svg path, 
+.epub-nav a:hover svg g {
+  fill: #FF4848;
+}
+
+.header-nav .hn-sign-out-nav:hover svg g {
+  fill: #FF4848;
+}
+
+.header-nav label, .header-nav-small label {
+	float: left;
+	color: #676767;
+	font-weight: 600;
+	margin-top: 2px;
+	cursor: pointer;
+}
+
+.header-nav a:hover label {
+	color: #FF4848;
+}
+
+.upload-books-form {
+  display: none;
+}
+
+.page-container {
+	width: 100%;
+	margin-top: 60px;
+	overflow: hidden;
+}
+
+.sign-form {
+	display: block;
+	width: 370px;
+  height: auto;
+	margin: 120px auto;
+  padding-bottom: 30px;
+  border: 1px solid #DFDFDF;
+  background: white;
+}
+
+.sign-form label {
+	display: block;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.sign-form input[type="text"], .sign-form input[type="password"] {
+  display: block;
+	width: 240px;
+  height: 34px;
+  font-size: 16px;
+  border: 1px solid #B1B1B1;
+  padding: 0 10px;
+  outline: none;
+	margin: 20px auto 0;
+}
+
+.sign-form input[type="text"]:focus, .sign-form input[type="password"]:focus {
+	border: 1px solid #FF4848;
+}
+
+input[type="submit"] {
+	display: block;
+	background: #FF4848;
+	font-size: 16px;
+  color: white;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-bottom: .6em;
+  padding-top: .4em;
+  border: none;
+  margin: 20px auto 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.quote-of-the-day {
+	width: 600px;
+	margin: 60px auto;
+	overflow: hidden;
+}
+
+.quote-of-the-day .qotd-border {
+	width: 100%;
+	border: 5px solid rgba(96, 96, 96, 0.13);
+	padding: 20px;
+	overflow-y: hidden;
+}
+
+.quote-of-the-day label {
+	position: absolute;
+  background: #222222;
+  color: white;
+  font-weight: 600;
+  margin-top: -47px;
+  margin-left: -35px;
+  padding: 6px 8px;
+}
+
+.quote-of-the-day img {
+	float: left;
+	margin-right: 20px;
+}
+
+.quote-of-the-day .quote, .quote-of-the-day .author, .quote-of-the-day .from-book {
+	float: right;
+	color: #161616;
+	width: 480px;
+	line-height: 24px;
+}
+
+.quote-of-the-day .quote {
+	font-size: 19px;
+	line-height: 27px;
+}
+
+.quote-of-the-day .author, .quote-of-the-day .from-book {
+	float: right;
+	margin-top: 5px;
+	font-weight: 700;
+}
+
+.quote-of-the-day .from-book {
+  display: block;
+  font-weight: normal;
+}
+
+.quote-of-the-day .author a {
+  color: #161616;
+}
+
+.currently-reading-container {
+	width: 100%;
+	background: #222222;
+  margin-bottom: 30px;
+}
+
+.currently-reading-container .crc-bg, .books-container {
+	width: 1440px;
+	margin: 0 auto;
+	padding: 30px;
+	overflow: hidden;
+}
+
+.books-container {
+  margin-bottom: 80px;
+	padding: 0 30px;
+}
+
+.crc-bg label {
+	float: left;
+	font-size: 24px;
+	font-weight: 600;
+	color: #333333;
+	background: white;
+	padding: 8px 12px;
+}
+
+.crcb-arrow {
+	float: right;
+}
+
+.crcb-arrow .left, .crcb-arrow .right, .epub-prev, .epub-next {
+	float: left;
+	width: 60px;
+	height: 47px;
+	border: 4px solid white;
+	cursor: pointer;
+}
+
+.epub-prev, .epub-next {
+  border: 4px solid #676767;
+}
+
+.crcb-arrow .left, .epub-prev {
+	margin-right: 30px;
+}
+
+.crcb-arrow .left:hover, .crcb-arrow .right:hover {
+	background: white;
+}
+
+.epub-prev:hover, .epub-next:hover {
+  background: #676767;
+}
+
+.crcb-arrow .left.none, .crcb-arrow .right.none, .epub-prev.none, .epub-next.none {
+	background: none;
+	border: none;
+	padding-top: 4px;
+	cursor: auto;
+}
+
+.crcb-arrow .left svg, .crcb-arrow .right svg, .epub-prev svg, .epub-next svg {
+	display: block;
+	margin: 10px auto;
+}
+
+.crcb-arrow .left.none svg g, .crcb-arrow .right.none svg g, .epub-prev.none svg g, .epub-next.none svg g {
+	stroke: #BEBEBE;
+}
+
+.crcb-arrow .left:hover svg g, .crcb-arrow .right:hover svg g {
+	stroke: #333;
+}
+
+.epub-prev:hover svg g, .epub-next:hover svg g {
+  stroke: #fff;
+}
+
+.crcb-arrow .left.none:hover svg g, .crcb-arrow .right.none:hover svg g, .epub-prev.none:hover svg g, .epub-next.none:hover svg g {
+	stroke: #BEBEBE;
+}
+
+.crcb-book-list {
+	position: relative;
+	float: left;
+	width: 1380px;
+	min-height: 300px;
+	margin: 50px 0 30px;
+  clear: both;
+  overflow: hidden;
+}
+
+.crcb-book-list a {
+	position: absolute;
+	top: 0;
+	transition: left 0.2s ease-in-out;
+}
+
+.bc-books-list, .bc-books-list div, 
+.bc-books-list-medium, 
+.bc-books-list-medium div,
+.bc-books-list-small, 
+.bc-books-list-small div, 
+.bc-books-list-xtra-small {
+	overflow: hidden;
+}
+
+.bc-books-list-medium, 
+.bc-books-list-small, 
+.bc-books-list-xtra-small {
+	display: none;
+}
+
+.bc-books-list-medium a img,
+.bc-books-list-small a img, 
+.bc-books-list-xtra-small a img {
+	width: 180px;
+}
+
+.bc-books-list a, .bc-books-list-medium a, .bc-books-list-small a {
+	float: left;
+	margin-right: 30px;
+	margin-top: 50px;
+}
+
+.bc-books-list a:nth-child(6n),  
+.bc-books-list-medium a:nth-child(3n),
+.bc-books-list-small a:nth-child(2n) {
+	margin-right: 0;
+}
+
+.bc-books-list-medium {
+	width: 600px;
+	margin: 0 auto;
+}
+
+.bc-books-list-small {
+	width: 390px;
+  margin: 0 auto;
+}
+
+.bc-books-list-xtra-small a {
+	display: block;
+	width: 100%;
+  margin-top: 50px;
+  overflow: hidden;
+}
+
+.bc-books-list-xtra-small a img {
+	display: block;
+  margin: 0 auto;
+}
+
+.bc-pagination {
+	width: 392px;
+	margin: 80px auto 0;
+	overflow: hidden;
+}
+
+.bc-pagination a, .bc-pagination .dots {
+	float: left;
+	font-size: 24px;
+	margin-right: 30px;
+}
+
+.bc-pagination a {
+	color: #161616;
+	text-decoration: none;
+}
+
+.bc-pagination .num {
+	margin-top: 8px;
+	font-weight: 600;
+}
+
+.bc-pagination .dots {
+	margin-top: 8px;
+	font-weight: 600;
+	cursor: default;
+	color: #BEBEBE;
+}
+
+.bc-pagination .dots-one {
+  display: none;
+}
+
+.bc-pagination a:hover {
+	color: #FF4848;
+}
+
+.bc-pagination a.none {
+	color: #BEBEBE;
+	cursor: default;
+}
+
+.bc-pagination .num.none {
+	font-size: 20px;
+    margin-top: 10px;
+}
+
+.bc-pagination .left, .bc-pagination .right {
+	width: 60px;
+  height: 47px;
+  text-align: center;
+  border: 4px solid #FF4848;
+  padding-top: 5px;
+  cursor: pointer;
+}
+
+.bc-pagination .right {
+	margin-right: 0;
+}
+
+.bc-pagination .left:hover, .bc-pagination .right:hover {
+	background: #FF4848;
+}
+
+.bc-pagination .left:hover svg g, .bc-pagination .right:hover svg g {
+	stroke: white;
+}
+
+.bc-pagination .left.none, .bc-pagination .right.none {
+	border: none;
+	margin-top: 4px;
+}
+
+.bc-pagination .left.none svg g, .bc-pagination .right.none svg g {
+	stroke: #BEBEBE;
+}
+
+.bc-pagination .left.none:hover, .bc-pagination .right.none:hover {
+	background: transparent;
+}
+
+footer {
+  position: absolute;
+	width: 100%;
+	height: 80px;
+	background: #222222;
+}
+
+.collections-banner {
+	position: relative;
+	width: 100%;
+	height: 260px;
+	background-image: url('../img/collections_banner.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.collections-banner::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: " ";
+	width: 100%;
+	height: 260px;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.collections-banner label {
+	position: absolute;
+	width: 100%;
+	font-size: 34px;
+	font-weight: 700;
+	text-align: center;
+	color: white;
+	text-align: center;
+	z-index: 1;
+	margin-top: 70px;
+}
+
+.collections-banner .add-collection-button {
+	position: absolute;
+  background: #FF4848;
+  text-decoration: none;
+  color: white;
+  left: 50%;
+  margin-left: -87.49px;
+  margin-top: 140px;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-bottom: .6em;
+  padding-top: .4em;
+  z-index: 1;
+}
+
+.collections-list {
+  width: 1440px;
+  min-height: 700px;
+  margin: 50px 0;
+  padding: 0 30px;
+}
+
+.collections-list a {
+  position: relative;
+  float: left;
+  width: 315px;
+  height: 360px;
+  margin-right: 30px;
+  margin-bottom: 50px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.collections-list a::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 315px;
+  height: 360px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.collections-list a img {
+  width: 100%;
+  margin-top: -50px;
+}
+
+.collections-list a .text {
+  position: absolute;
+  top: 0;
+  padding: 0 20px;
+  margin-top: 20px;
+  z-index: 1;
+}
+
+.collections-list a .title {
+  font-size: 34px;
+  font-weight: 700;
+  color: white;
+}
+
+.collections-list a .description {
+  color: white;
+  line-height: 24px;
+  margin-top: 10px;
+}
+
+.add-collection-container {
+  width: 685px;
+  margin: 50px auto;
+  padding: 0 30px;
+  min-height: 700px;
+}
+
+.add-collection-container label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.add-collection-container input[type="text"], .add-collection-container textarea {
+  display: block;
+  width: 625px;
+  height: 34px;
+  font-size: 16px;
+  border: 1px solid #B1B1B1;
+  padding: 0 10px;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+.add-collection-container textarea {
+  height: 120px;
+  padding: 10px;
+  resize: vertical;
+}
+
+.add-collection-container .add-books {
+  width: 625px;
+  min-height: 200px;
+  max-height: 500px;
+  border: 1px solid #B1B1B1;
+  background: white;
+  padding: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.add-collection-container .add-books label {
+  margin-bottom: 30px;
+}
+
+.add-collection-container .add-books .ab-item {
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.add-collection-container .add-books .ab-item input[type="checkbox"] {
+  float: left;
+}
+
+.add-collection-container .add-books .ab-item img {
+  float: left;
+  margin-left: 10px;
+}
+
+.add-collection-container input[type="submit"] {
+  display: block;
+  margin: 20px auto;
+}
+
+.books-container .info {
+  display: block;
+  border: 4px solid #666666;
+  text-align: center;
+  margin-top: 50px;
+  margin-right: 30px;
+  padding: 20px;
+}
+
+.books-container .info .title {
+  font-size: 34px;
+  color: #444444;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.books-container .info .description {
+  line-height: 24px;
+}
+
+@media screen
+  and (max-width: 1440px) { 
+  	
+  	header .header-container {
+  		width: 1290px;
+  	}
+
+  	.quote-of-the-day .quote {
+  		font-size: 17px;
+  	}
+
+  	.crc-bg label {
+  		font-size: 21px;
+  	}
+
+  	.crcb-arrow .left, .crcb-arrow .right {
+  		width: 56px;
+  	}
+
+  	.crcb-arrow .left svg, .crcb-arrow .right svg {
+  		width: 29px;
+  	}
+
+  	.currently-reading-container .crc-bg, .books-container {
+  		width: 1290px;
+  	}
+
+  	.crcb-book-list {
+  		width: 1230px;
+  		min-height: 270px;
+  	}
+
+  	.crcb-book-list a img, .bc-books-list a img {
+  		width: 180px;
+  	}
+
+  	.bc-pagination a, .bc-pagination .dots {
+  		font-size: 21px;
+  	}
+
+  	.bc-pagination .dots, .bc-pagination .num {
+  		margin-top: 9px;
+  	}
+
+  	.bc-pagination .num.none {
+  		font-size: 18px;
+  		margin-top: 10px;
+  	}
+
+  	.bc-pagination .left, .bc-pagination .right {
+  		width: 56px;
+  		padding-top: 8px;
+  	}
+
+  	.bc-pagination .left svg, .bc-pagination .right svg {
+  		width: 29px;
+  	}
+
+}
+
+@media screen 
+  and (max-width: 1300px) {
+
+    header {
+      height: 108px;
+    }
+
+    .nav-up {
+      top: -108px;
+    }
+
+    header .header-container {
+      width: 100%;
+    }
+
+    .search-box {
+      display: block;
+      float: none;
+      width: 100%;
+      margin-top: 60px;
+      margin-left: 0;
+    }
+
+    .search-dropdown {
+      width: 100%;
+      margin-top: 48px;
+      margin-left: -30px;
+      max-height: 600px;
+    }
+
+    .search-dropdown a img {
+      width: 14%;
+    }
+
+    .search-dropdown a .sdtl-title, .search-dropdown a .sdtl-author, .search-dropdown a .sdtl-description {
+      width: 82%;
+    }
+
+    .header-nav {
+      display: none;
+    }
+
+    .menu-icon {
+      float: right;
+      display: block;
+      margin-top: -80px;
+      cursor: pointer;
+    }
+
+    .page-container {
+      margin-top: 108px;
+    }
+
+  	.currently-reading-container .crc-bg, .books-container {
+  		width: 870px;
+  	}
+
+  	.bc-books-list, .bc-books-list-small, .bc-books-list-xtra-small {
+  		display: none;
+  	}
+
+  	.bc-books-list-medium {
+  		display: block;
+  	}
+}
+
+@media screen
+  and (max-device-width: 900px) {
+
+  	.quote-of-the-day {
+  		width: 390px;
+  	}
+
+  	.quote-of-the-day label {
+  		left: 50%;
+    	margin-left: -74px;
+  	}
+
+  	.quote-of-the-day img {
+  		float: none;
+    	display: block;
+    	margin: 0 auto 20px;
+  	}
+
+  	.quote-of-the-day .quote, .quote-of-the-day .author, .quote-of-the-day .from-book {
+  		width: 100%;
+    	text-align: center;
+    	margin-bottom: 10px;
+    	float: none;
+  	}
+
+  	.quote-of-the-day .from-book {
+  		margin-bottom: 0;
+  	}
+  	
+  	.currently-reading-container .crc-bg, .crcb-book-list, .books-container {
+  		width: 100%;
+  	}
+ }
+
+ @media screen
+  and (max-device-width: 768px) {
+  	
+  	.bc-books-list,.bc-books-list-medium, .bc-books-list-xtra-small {
+  		display: none;
+  	}
+
+  	.bc-books-list-small {
+  		display: block;
+  	}
+
+}
+
+@media screen
+  and (max-device-width: 740px) {
+
+  	.search-dropdown {
+  		max-height: 190px;
+  	} 	
+
+  	.quote-of-the-day {
+  		width: 100%;
+  		padding: 0 30px;
+  	}
+
+  	.currently-reading-container .crc-bg, .books-container {
+  		width: 100%;
+  	}
+
+  	.crc-bg label {
+  		float: none;
+	    display: block;
+    	text-align: center;
+    	margin-bottom: 30px;
+  	}
+
+  	.crcb-arrow {
+  		width: 100%;
+    	float: none;
+    	margin: 0 auto;
+    	overflow: hidden;
+  	}
+
+	  .crcb-arrow .right {
+  		float: right;
+  	}
+
+  	.bc-pagination {
+  		width: 190px;
+  	}
+
+  	.bc-pagination a:nth-child(8) {
+  		margin-right: 0;
+  	}
+
+  	.bc-pagination .left, .bc-pagination .right {
+  		display: none;
+  	}
+
+}
+
+@media screen
+  and (max-width: 700px) {
+
+  .epub-prev, .epub-next {
+    top: 90%;
+    background: white;
+  }
+
+}
+
+@media screen
+  and (max-device-width: 470px) {
+
+  	.search-dropdown {
+  		max-height: 340px;
+  	}
+
+    .bc-books-list,.bc-books-list-medium, .bc-books-list-medium, .bc-books-list-small {
+      display: none;
+    }
+
+    .bc-books-list-xtra-small {
+      display: block;
+    }
+
+}
