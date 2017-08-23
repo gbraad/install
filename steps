@@ -1,0 +1,4 @@
+apt-get update
+apt-get install -y git-core
+git clone https://github.com/LibreRead/libreread_docker.git /var/libreread
+cd /var/libreread
