@@ -29,6 +29,6 @@ Now you have logged in to your linode. Please follow the below installation inst
 * `apt-get install -y git-core`
 * `git clone https://github.com/LibreRead/manual_setup.git /var/libreread`
 * `cd /var/libreread`
-* `./install.sh`
+* `source install.sh`
 
 This will install LibreRead and run the server.
