@@ -1,25 +1,5 @@
 #!/bin/bash
 
-wget -qO- https://get.docker.com/ | sh
-
-curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-
-chmod +x /usr/local/bin/docker-compose
-
-sysctl -w vm.max_map_count=262144
-
-docker-compose up -d & wait
-
-sleep 20
-
-apt-get install -y unzip
-
-apt-get install -y redis-server
-
-apt-get install -y nginx
-
-mkdir -p uploads/img/
-
 echo Please enter your domain address, Eg: www.example.com
 read domain_address
 
@@ -45,6 +25,26 @@ export LIBREREAD_SMTP_PASSWORD=$smtp_password
 
 echo Please enter your LetsEncrypt email address
 read le_email_address
+
+wget -qO- https://get.docker.com/ | sh
+
+curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+
+chmod +x /usr/local/bin/docker-compose
+
+sysctl -w vm.max_map_count=262144
+
+docker-compose up -d & wait
+
+sleep 20
+
+apt-get install -y unzip
+
+apt-get install -y redis-server
+
+apt-get install -y nginx
+
+mkdir -p uploads/img/
 
 apt-get install -y certbot
 
