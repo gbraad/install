@@ -17,7 +17,7 @@ Sign up for [Linode](https://www.linode.com/?r=2c9c375722ccc8de20545189f54af1457
 * Add Linode 2048
 * Select a Location of your choice. Probably the one that is nearer to you.
 * Now that the linode has been added. Go to Dashboard and click "Deploy an Image".
-* Choose Debian 9 and enter the root password (This password will be used when you login via SSH)
+* Choose Debian 9, then select 512MB swap image and enter the root password (This password will be used when you login via SSH)
 * Once the "Host Job Queue" is done. You can click "Boot" to boot your linode.
 * Once the server is running, go to "Remote Access" and copy the SSH Access. Eg: ssh root@XXX.XXX.XXX.XXX
 * Paste it in your local terminal and enter "yes" to add it to the known hosts. Then you need to enter the password.
