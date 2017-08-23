@@ -1,0 +1,11 @@
+[Unit]
+Description=LibreRead systemd service
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/root/libreread
+ExecStart=/bin/bash -c './server'
+
+[Install]
+WantedBy=multi-user.target

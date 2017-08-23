@@ -22,4 +22,8 @@ apt-get install -y certbot
 
 `certbot certonly --non-interactive --agree-tos --email hello@nirm.al --webroot -w /var/libreread -d www.libreread.org`
 
-./server
+cp config/libreread.service /lib/systemd/system/
+
+systemctl enable libreread
+
+systemctl start libreread
