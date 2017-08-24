@@ -12,7 +12,7 @@ services:
   web:
     image: nginx
     volumes:
-      ./mysite.template:/etc/nginx/conf.d/mysite.template
+      - ./mysite.template:/etc/nginx/conf.d/mysite.template
     ports:
       - "8080:80"
     environment:
