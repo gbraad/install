@@ -16,6 +16,6 @@ services:
   ports:
    - "8080:80"
   environment:
-   - NGINX_HOST=libreread.com
-   - NGINX_PORT=80
+   NGINX_HOST: "libreread.com"
+   NGINX_PORT: "80"
   command: /bin/bash -c "envsubst < /etc/nginx/conf.d/mysite.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
