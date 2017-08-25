@@ -55,3 +55,9 @@ cp config/libreread.service /lib/systemd/system/
 systemctl enable libreread
 
 systemctl start libreread
+
+./nginx $domain_address
+
+cp nginx.conf /etc/nginx/nginx.conf
+
+systemctl start nginx
