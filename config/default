@@ -3,8 +3,8 @@
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
-        server_name demo.libreread.org;
-        return 301 https://$server_name$request_uri;
+    server_name demo.libreread.org;
+    return 301 https://$server_name$request_uri;
 }
 
 server {
@@ -12,7 +12,7 @@ server {
 	#
 	listen 443 ssl;
 	listen [::]:443 ssl;
-        server_name demo.libreread.org;
+    server_name demo.libreread.org;
 	
 	include snippets/ssl-demo.libreread.org.conf;
     include snippets/ssl-params.conf;
@@ -30,7 +30,7 @@ server {
 	}
 
     location ~ /.well-known {
-    	root /root/libreread/.well-known;
+    	root /var/libreread/.well-known;
 		allow all;
     }
 }
