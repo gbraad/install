@@ -1,7 +1,5 @@
 FROM elasticsearch:5
 
-ENV ES_JAVA_OPTS="-Des.path.conf=/etc/elasticsearch"
-
 ENV ES_JAVA_OPTS="-Xms1g -Xmx1g"
 
 RUN /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch ingest-attachment
