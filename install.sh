@@ -28,16 +28,11 @@ read le_email_address
 
 wget -qO- https://get.docker.com/ | sh
 
-# curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-
-# chmod +x /usr/local/bin/docker-compose
-
 sysctl -w vm.max_map_count=262144
 
-# docker-compose up -d & wait
 docker build -t my_es .
 
-docker run -name my_es_instance -i -t my_es
+docker run -d -p 9200:9200 -p 9300:9300 --name my_es_instance -i -t my_es
 
 sleep 20
 
