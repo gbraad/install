@@ -60,4 +60,4 @@ systemctl start libreread
 
 cp nginx.conf /etc/nginx/nginx.conf
 
-systemctl start nginx
+systemctl restart nginx
