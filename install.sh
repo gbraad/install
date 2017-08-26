@@ -56,8 +56,8 @@ systemctl enable libreread
 
 systemctl start libreread
 
-./nginx $domain_address
+cp /etc/nginx/sites-available/default_backup
 
-cp nginx.conf /etc/nginx/nginx.conf
+cp config/nginx.conf /etc/nginx/sites-available/default
 
 systemctl restart nginx
