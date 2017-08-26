@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo Please enter your domain address, Eg: www.example.com
-read domain_address
+# echo Please enter your domain address, Eg: www.example.com
+# read domain_address
 
 echo Please enter your SMTP server, Eg: smtp.zoho.com
 read smtp_server
@@ -23,8 +23,8 @@ read smtp_password
 
 export LIBREREAD_SMTP_PASSWORD=$smtp_password
 
-echo Please enter your LetsEncrypt email address
-read le_email_address
+# echo Please enter your LetsEncrypt email address
+# read le_email_address
 
 wget -qO- https://get.docker.com/ | sh
 
