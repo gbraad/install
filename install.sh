@@ -3,12 +3,12 @@
 # echo Please enter your domain address, Eg: www.example.com
 # read domain_address
 
-echo Please enter your SMTP server, Eg: smtp.zoho.com
+echo Please enter your SMTP server, Eg: smtp.fastmail.com
 read smtp_server
 
 export LIBREREAD_SMTP_SERVER=$smtp_server
 
-echo Please enter your SMTP port, Eg: 587
+echo Please enter your SMTP port, Eg: 587/465
 read smtp_port
 
 export LIBREREAD_SMTP_PORT=$smtp_port
