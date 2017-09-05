@@ -44,6 +44,8 @@ apt-get install -y redis-server
 
 apt-get install -y nginx
 
+systemctl stop nginx
+
 mkdir -p uploads/img/
 
 cp config/libreread.service /lib/systemd/system/
@@ -66,4 +68,4 @@ cp ssl-libreread.org.conf /etc/nginx/snippets/ssl-libreread.org.conf
 
 cp config/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
 
-systemctl restart nginx
+systemctl start nginx
