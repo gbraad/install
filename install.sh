@@ -48,6 +48,8 @@ systemctl stop nginx
 
 mkdir -p uploads/img/
 
+export GIN_MODE=release
+
 cp config/libreread.service /lib/systemd/system/
 
 systemctl enable libreread
