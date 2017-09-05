@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# echo Please enter your domain address, Eg: www.example.com
-# read domain_address
+echo Please enter your domain address, Eg: www.example.com
+read domain_address
 
 echo Please enter your SMTP server, Eg: smtp.fastmail.com
 read smtp_server
@@ -23,8 +23,8 @@ read smtp_password
 
 export LIBREREAD_SMTP_PASSWORD=$smtp_password
 
-# echo Please enter your LetsEncrypt email address
-# read le_email_address
+echo Please enter your LetsEncrypt email address
+read le_email_address
 
 wget -qO- https://get.docker.com/ | sh
 
@@ -46,16 +46,24 @@ apt-get install -y nginx
 
 mkdir -p uploads/img/
 
-apt-get install -y certbot
-
-# certbot certonly --non-interactive --agree-tos --email $le_email_address --webroot -w /var/libreread -d $domain_address
-
 cp config/libreread.service /lib/systemd/system/
 
 systemctl enable libreread
 
 systemctl start libreread
 
-cp config/nginx.conf /etc/nginx/sites-available/default
+apt-get install -y certbot
+
+certbot certonly --non-interactive --agree-tos --email $le_email_address --standalone --preferred-challenges http -d $domain_address
+
+openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+
+./nginx $domain_address
+
+cp nginx.conf /etc/nginx/sites-available/default
+
+cp ssl-libreread.org.conf /etc/nginx/snippets/ssl-libreread.org.conf
+
+cp config/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
 
 systemctl restart nginx
