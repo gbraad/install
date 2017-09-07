@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	conf := "server {\n    listen 80 default_server;\n    listen [::]:80 default_server;\n    server_name " + os.Args[1:][0] + ";\n    return 301 https://$server_name$request_uri;\n}\n\nserver {\n    listen 443 ssl;\n    listen [::]:443 ssl;\n    server_name " + os.Args[1:][0] + ";\n\n    include snippets/ssl-libreread.org.conf;\n    include snippets/ssl-params.conf;\n\n    location / {\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $remote_addr;\n        proxy_set_header Host $host;\n        proxy_pass http://127.0.0.1:8080;\n    }\n}"
+	conf := "server {\n    listen 80 default_server;\n    listen [::]:80 default_server;\n    client_max_body_size 24000M;\n    server_name " + os.Args[1:][0] + ";\n    return 301 https://$server_name$request_uri;\n}\n\nserver {\n    listen 443 ssl;\n    listen [::]:443 ssl;\n    server_name " + os.Args[1:][0] + ";\n    client_max_body_size 24000M;\n\n    include snippets/ssl-libreread.org.conf;\n    include snippets/ssl-params.conf;\n\n    location / {\n        client_max_body_size 24000M;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $remote_addr;\n        proxy_set_header Host $host;\n        proxy_pass http://127.0.0.1:8080;\n    }\n}"
 	data := []byte(conf)
 	err := ioutil.WriteFile("nginx.conf", data, 0755)
 	CheckError(err)
