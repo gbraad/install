@@ -129,6 +129,8 @@ body {
 .edit-metadata-wrapper {
   display: none;
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.95);
@@ -875,7 +877,6 @@ footer {
 
 .collections-list {
   width: 1440px;
-  min-height: 700px;
   margin: 50px 0;
   padding: 0 30px;
 }
@@ -1046,7 +1047,10 @@ footer {
   	}
 
   	.crcb-book-list a img, .bc-books-list a img {
+      float: left;
   		width: 180px;
+      min-height: 50px;
+      background: gray;
   	}
 
   	.bc-pagination a, .bc-pagination .dots {
@@ -1240,6 +1244,14 @@ footer {
   .epub-prev, .epub-next {
     top: 90%;
     background: white;
+  }
+
+  .epub-body .total-pages {
+    left: 50%;
+    margin-left: -28px;
+    background: black;
+    color: white;
+    padding: 2px;
   }
 
 }

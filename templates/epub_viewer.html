@@ -3,8 +3,8 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-Equiv="Cache-Control" Content="no-cache" />
-    <meta http-Equiv="Pragma" Content="no-cache" />
-    <meta http-Equiv="Expires" Content="0" />
+  <meta http-Equiv="Pragma" Content="no-cache" />
+  <meta http-Equiv="Expires" Content="0" />
 	<title>{{.fileName}}</title>
 	<link rel="icon" type="image/png" href="/static/img/favicon-16x16.png" sizes="16x16">
 	<link rel="icon" type="image/png" href="/static/img/favicon-32x32.png" sizes="32x32">
@@ -18,11 +18,11 @@
   		</div>
 	</div>
 	<header>
-		<div class="uploading-progress">Uploading...</div>
 		<div class="header-container">
 			<a href="/" class="logo">
 				<svg width="30" height="30" viewBox="290 230 280.089 340"><defs><style>.cls-1,.cls-2{fill:#676767;fill-rule:evenodd}.cls-2{fill:#fff}</style></defs><path id="Path_3" data-name="Path 3" class="cls-1" d="M281 140s-60 62.4-60 120c0 38.879 20 70 20 70 0 8.1-10 10-10 10-26.02-17.77-53.433-20.391-70-19.938a20 20 0 0 1-39.994 0c-16.57-.453-43.983 2.168-70 19.938 0 0-10-1.9-10-10 0 0 20-31.121 20-70C61 202.4 1 140 1 140a6.562 6.562 0 0 1 3.639-6.729c13.243-5.249 74.014-6.924 116.361 16.138v-14.784a39.979 39.979 0 0 1-.576-68.919C115.544 7.654 81 10 81 10V0c39.885 0 48.582 37.593 50.108 61.238a40.139 40.139 0 0 1 19.784 0C152.418 37.593 161.114 0 201 0v10s-34.544-2.346-39.424 55.706a39.979 39.979 0 0 1-.576 68.919v14.784c42.347-23.062 103.118-21.387 116.361-16.138A6.562 6.562 0 0 1 281 140z" transform="translate(289.044 230)"/><path id="Path_4" data-name="Path 4" class="cls-2" d="M241 170s-60 0-89.88 19.945L151 180c.014.268 20-20 89.989-20-.033.812.011 10 .011 10zm0-10h-.011c.003-.076.006-.084.011 0zM71 300s14.377-10 60-10v10s-30 0-60 10zm10-40l.081-9.986C121 250 131 260 131 260l-.134 9.875C111 260 80.976 261.495 81 260zm-20-50l.081-9.986C111 200 131 220 131 220l-.134 9.875C101 210 60.976 211.495 61 210zm-20-40s.044-9.188.011-10C111 160 130.986 180.268 131 180l-.12 9.945C101 170 41 170 41 170zm.011-10H41c0-.084.008-.076.011 0zm179.908 40.014L221 210c.024 1.495-40 0-69.866 19.875L151 220s20-20 69.919-19.986zm-20 50L201 260c.024 1.495-30 0-49.866 9.875L151 260s10-10 49.919-9.986zM211 310c-30-10-60-10-60-10v-10c45.623 0 60 10 60 10z" transform="translate(289.044 230)"/></svg>
-				LibreRead <span>beta</span></a>
+				LibreRead <span>beta</span>
+      </a>
 			<div class="header-nav epub-nav">
 				<a href="/" class="hn-zoom-in-nav">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25"><path d="M32 1C14.9 1 1 14.9 1 32s13.9 31 31 31 31-13.9 31-31S49.1 1 32 1zm18 34c0 .6-.4 1-1 1H36v13c0 .6-.4 1-1 1h-6c-.6 0-1-.4-1-1V36H15c-.6 0-1-.4-1-1v-6c0-.6.4-1 1-1h13V15c0-.6.4-1 1-1h6c.6 0 1 .4 1 1v13h13c.6 0 1 .4 1 1v6z" class="nc-icon-wrapper" fill="#676767"/></svg>
@@ -44,7 +44,7 @@
 					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48"><path d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z" class="nc-icon-wrapper" fill="#676767"/></svg>
 					<label>Edit Metadata</label>
 				</a>
-				<a href="/" class="hn-delete-nav">
+				<a href="/delete-book/{{.fileName}}" class="hn-delete-nav">
 					<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48"><path d="M12 38c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V14H12v24zm4.93-14.24l2.83-2.83L24 25.17l4.24-4.24 2.83 2.83L26.83 28l4.24 4.24-2.83 2.83L24 30.83l-4.24 4.24-2.83-2.83L21.17 28l-4.24-4.24zM31 8l-2-2H19l-2 2h-7v4h28V8z" class="nc-icon-wrapper" fill="#676767"/></svg>
 					<label>Delete book</label>
 				</a>
@@ -53,7 +53,7 @@
 			</div>
 		</div>
 	</header>
-	<div class="total-pages">{{.totalPages}}</div>
+	<div class="total-pages">{{.currentPage}} of {{.totalPages}}</div>
 	<iframe id="epubIframe" spine-idref="{{.idRef}}" src="{{.filePath}}" width="100%" height="100%" frameborder="0" style="display: none;"></iframe>
 	<div class="epub-prev none">
 		<svg width="33" height="20" viewBox="0 0 33 20" xmlns="http://www.w3.org/2000/svg"><title>Group 2</title><g stroke="#676767" stroke-width="3" fill="none" fill-rule="evenodd"><path d="M33 10.143H3"/><path stroke-linecap="square" d="M10.143 17.286L3 10.143 10.143 3"/></g></svg>
@@ -125,13 +125,14 @@
 						href: href
 					},
 					contentType: 'application/json',
-            		success: function(data) {
-            			console.log(data)
-            			$('#epubIframe').hide()
-                		$('#epubIframe').attr('src', data.href_path + '?random=' + (new Date()).getTime() + Math.floor(Math.random() * 1000000))
-                		if (data.left_none == true) $('.epub-prev').addClass('none')
-                		if (data.right_none == true) $('.epub-next').addClass('none')
-            		}
+          success: function(data) {
+            console.log(data)
+            $('#epubIframe').hide()
+            $('#epubIframe').attr('src', data.href_path + '?random=' + (new Date()).getTime() + Math.floor(Math.random() * 1000000))
+            $('.total-pages').html(data.current_page + ' of {{.totalPages}}')
+            if (data.left_none == true) $('.epub-prev').addClass('none')
+            if (data.right_none == true) $('.epub-next').addClass('none')
+          }
 				})
 			}
 
@@ -420,8 +421,8 @@
       		$(document).on('click', '.hn-download-nav', function(e) {
       			e.preventDefault()
       			var fileName = window.location.pathname.split('/').pop();
-				var fileURL = "/uploads/" + fileName;
-				window.location.href = fileURL
+				    var fileURL = "/uploads/" + fileName;
+				    window.location.href = fileURL
       		})
 
       		$(document).on('click', '.hn-edit-nav', function(e) {
@@ -430,7 +431,7 @@
       			var data = {
       				'fileName': fileName
       			}
-				$.ajax({
+				    $.ajax({
             		url: '/get-book-metadata',
             		type: 'GET',
             		data: data,
@@ -462,7 +463,7 @@
         			}
 
         			reader.readAsDataURL(input.files[0]);
-    			}
+    			  }
       		}
 
       		$('.emwd-cover-upload').change(function() {
