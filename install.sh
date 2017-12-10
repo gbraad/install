@@ -6,6 +6,8 @@ read domain_address
 echo Please enter your SMTP server, Eg: smtp.fastmail.com
 read smtp_server
 
+export LIBREREAD_DOMAIN_ADDRESS=$domain_address
+
 export LIBREREAD_SMTP_SERVER=$smtp_server
 
 echo Please enter your SMTP port, Eg: 587/465
