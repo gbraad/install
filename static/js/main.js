@@ -306,6 +306,54 @@ $(function() {
 		})
 	})
 
+	$('.delete-collection-button').click(function(e) {
+		e.preventDefault()
+
+		var href = $(this).attr('href')
+		if (confirm("Are you sure, you want to delete this collection?") == true) {
+			window.location.href = href
+		}
+	})
+
+	$('#changePassword').prop("checked", false)
+
+	$('#changePassword').change(function(){
+		if ($(this).is(":checked")) {
+			$('.pb-item').fadeIn()
+		} else {
+			$('.pb-item').hide()
+		}
+	})
+
+	$('.submit-settings').click(function(e) {
+		e.preventDefault()
+		var email = $('#sEmail').val()
+		var data = {}
+		if ($('#changePassword').is(':checked')) {
+			data = {
+				'email': email,
+				'change_password': true,
+				'password': $('#sPassword').val()
+			}
+		} else {
+			data = {
+				'email': email,
+				'change_password': false
+			}
+		}
+
+		$.ajax({
+			url: '/post-settings',
+			type: 'POST',
+			data: JSON.stringify(data),
+			contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+				alert(data)
+				window.location.href = '/signout'
+            }
+		})
+	})
+
 	$(document).click(function(e) {
 		if ( $(e.target).closest('.search-dropdown').length == 0 && $(e.target).closest('.search-box').length == 0 ) {
 			$('.search-dropdown').hide()

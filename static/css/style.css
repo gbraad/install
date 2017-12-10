@@ -537,6 +537,12 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+.sign-form .forget-password {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+}
+
 .quote-of-the-day {
 	width: 600px;
 	margin: 60px auto;
@@ -604,7 +610,7 @@ input[type="submit"] {
   margin-bottom: 30px;
 }
 
-.currently-reading-container .crc-bg, .books-container {
+.currently-reading-container .crc-bg, .books-container, .settings-container {
 	width: 1290px;
 	margin: 0 auto;
 	padding: 30px;
@@ -724,7 +730,9 @@ input[type="submit"] {
 .bc-books-list-medium a img,
 .bc-books-list-small a img, 
 .bc-books-list-xtra-small a img {
-	width: 180px;
+  width: 180px;
+  background: gray;
+  min-height: 50px;
 }
 
 .bc-books-list a, .bc-books-list-medium a, .bc-books-list-small a {
@@ -1039,6 +1047,63 @@ input[type="submit"] {
   line-height: 24px;
 }
 
+.books-container .info .buttons {
+  width: 114px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.books-container .info .edit-collection-button, .books-container .info .delete-collection-button {
+  float: left;
+  background: #555555;
+  text-decoration: none;
+  color: white;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-bottom: .6em;
+  padding-top: .4em;
+}
+
+.books-container .info .delete-collection-button {
+  background: #FF4848;
+  margin-left: 20px;
+}
+
+.s-email {
+  width: 200px;
+  margin-left: 10px;
+}
+
+.password-box {
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.password-box .pb-item {
+  margin-top: 10px;
+}
+
+.s-password {
+  display: block;
+  margin-top: 10px;
+}
+
+.pb-item {
+  display: none;
+}
+
+.submit-settings {
+  float: left;
+  background: #FF4848;
+  text-decoration: none;
+  color: white;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-bottom: .6em;
+  padding-top: .4em;
+  margin-top: 30px;
+}
+
 footer {
   position: absolute;
 	width: 100%;
@@ -1068,8 +1133,12 @@ footer {
       height: 108px;
     }
 
-    .epub-body header {
+    .epub-body header, .s-bg header, .s-confirm header {
       height: 60px;
+    }
+
+    .s-bg .header-nav, .s-confirm .header-nav {
+      display: block;
     }
 
     .nav-up {
@@ -1132,7 +1201,16 @@ footer {
 
   	.bc-books-list-medium {
       display: block;
-  	}
+    }
+    
+    .collections-list {
+      width: 315px;
+    }
+
+    .collections-list a {
+      display: block;
+      float: none;
+    }
 }
 
 @media screen
@@ -1270,6 +1348,14 @@ footer {
 @media screen
   and (max-device-width: 470px) {
 
+    .sign-form {
+      width: 100%;
+    }
+
+    .sign-form input[type="text"], .sign-form input[type="password"] {
+      width: 80%;
+    }
+
   	.search-dropdown {
   		max-height: 340px;
   	}
@@ -1282,4 +1368,24 @@ footer {
       display: block;
     }
 
+    .collections-list, .collections-list a, 
+    .collections-list a::after,
+    .books-container .info, 
+    .add-collection-container, 
+    .add-collection-container input[type="text"], 
+    .add-collection-container textarea, 
+    .add-collection-container .add-books {
+      width: 100%;
+    }
+
+    .emw-dialog {
+      width: 100%;
+      left: 0;
+      margin-left: 0;
+      padding: 30px 10px;
+    }
+  
+    .emwd-change-cover {
+      margin-left: 185px;
+    }
 }
