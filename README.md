@@ -3,12 +3,12 @@ In order to setup LibreRead, you must have SSH access to a 64-bit Linux server.
 
 ## Hardware Requirements
 * Modern single core CPU, dual core recommended
-* 1 GB RAM minimum
+* 256 MB RAM minimum
 * 64 bit Linux compatible with Docker
 
 ## Software Requirements
 * Debian 9
-* ElasticSearch 5.0
+* ElasticSearch 5.0 (optional)
 * Redis 3.2
 
 ## Create New Cloud Server
@@ -43,6 +43,6 @@ Once the dns settings is ready, run the below command from the project root dire
 Once this command is finished, you could point to your domain address, eg: https://example.com
 
 ## Enable full-text search with ElasticSearch
-By default, LibreRead will provide a simple metadata search. But if you need full-text search feature to search across all the book content. You will need to setup Docker and ElasticSearch. Run the command shown below from the project root directory to do that.
+By default, LibreRead will provide a simple metadata search. But if you need full-text search feature to search across all the book content, you will need to setup Docker and ElasticSearch. **For this to work smoothly we would recommend atleast 2GB RAM on your instance**. Run the command shown below from the project root directory.
 
 `source docker_es.sh`
