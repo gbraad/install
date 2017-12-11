@@ -16,7 +16,7 @@ func main() {
 		"Environment='LIBREREAD_SMTP_PORT=" + os.Args[1:][2] + "'\n" +
 		"Environment='LIBREREAD_SMTP_ADDRESS=" + os.Args[1:][3] + "'\n" +
 		"Environment='LIBREREAD_SMTP_PASSWORD=" + os.Args[1:][4] + "'\n" +
-		"Environment='ES_PATH=http://localhost:9200'\n" +
+		"Environment='ES_PATH=http://localhost:9200/'\n" +
 		"WorkingDirectory=/var/libreread\n" +
 		"ExecStart=/bin/bash -c './server'\n\n" +
 		"[Install]\n" +

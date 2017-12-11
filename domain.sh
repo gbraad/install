@@ -6,6 +6,10 @@ read domain_address
 echo Please enter your LetsEncrypt email address
 read le_email_address
 
+apt-get install -y nginx
+
+systemctl stop nginx
+
 apt-get install -y certbot
 
 certbot certonly --non-interactive --agree-tos --email $le_email_address --standalone --preferred-challenges http -d $domain_address
