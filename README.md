@@ -3,7 +3,7 @@ In order to setup LibreRead, you must have SSH access to a 64-bit Linux server.
 
 ## Hardware Requirements
 * Modern single core CPU, dual core recommended
-* 256 MB RAM minimum
+* 1GB RAM minimum
 * 64 bit Linux compatible with Docker
 
 ## Software Requirements
