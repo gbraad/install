@@ -1,0 +1,17 @@
+[unit]
+Description=LibreRead systemd service
+
+[Service]
+User=root
+Group=root
+Environment='LIBREREAD_DOMAIN_ADDRESS=https://test.libreread.org'
+Environment='LIBREREAD_SMTP_SERVER=smtp.fastmail.com'
+Environment='LIBREREAD_SMTP_PORT=465'
+Environment='LIBREREAD_SMTP_ADDRESS=info@libreread.org'
+Environment='LIBREREAD_SMTP_PASSWORD=asdf'
+Environment='ES_PATH=http://localhost:9200'
+WorkingDirectory=/var/libreread
+ExecStart=/bin/bash -c './server'
+
+[Install]
+WantedBy=multi-user.target

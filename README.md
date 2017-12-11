@@ -31,4 +31,4 @@ Now you have logged in to your linode. Please follow the below installation inst
 * `cd /var/libreread`
 * `source install.sh`
 
-You will be prompted for Domain, SMTP, LetsEncrypt email settings. Once you have entered those prompts, the script will install and start the server.
+You will be prompted for Domain and SMTP settings. Once you have entered those prompts, the script will install and start the server at http://<your-ip-address>:8080

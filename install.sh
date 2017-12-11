@@ -25,9 +25,6 @@ read smtp_password
 
 export LIBREREAD_SMTP_PASSWORD=$smtp_password
 
-echo Please enter your LetsEncrypt email address
-read le_email_address
-
 # wget -qO- https://get.docker.com/ | sh
 
 # sysctl -w vm.max_map_count=262144
@@ -50,24 +47,10 @@ systemctl stop nginx
 
 export GIN_MODE=release
 
-cp config/libreread.service /lib/systemd/system/
+./libreread $domain_address $smtp_server $smtp_port $smtp_address $smtp_password
+
+cp libreread.service /lib/systemd/system/
 
 systemctl enable libreread
 
 systemctl start libreread
-
-apt-get install -y certbot
-
-certbot certonly --non-interactive --agree-tos --email $le_email_address --standalone --preferred-challenges http -d $domain_address
-
-openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
-
-./nginx $domain_address
-
-cp nginx.conf /etc/nginx/sites-available/default
-
-cp ssl-libreread.org.conf /etc/nginx/snippets/ssl-libreread.org.conf
-
-cp config/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
-
-systemctl start nginx

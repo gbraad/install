@@ -2,3 +2,5 @@
 uploads/*
 libreread.db
 lr_index.bleve
+nginx
+libreread
