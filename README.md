@@ -31,4 +31,18 @@ Now you have logged in to your linode. Please follow the below installation inst
 * `cd /var/libreread`
 * `source install.sh`
 
-You will be prompted for Domain and SMTP settings. Once you have entered those prompts, the script will install and start the server at http://<your-ip-address>:8080
+You will be prompted for Domain and SMTP settings. Once you have entered those prompts, the script will install and start the server at **http://ip_address:8080**
+
+## Domain setup with NGINX and Let's Encrypt
+Now that the server is ready, we are going to setup the domain. Point to [Linode Docs](https://www.linode.com/docs/networking/dns/dns-manager-overview/) or your hosting providers documentation for dns settings. **This might take up to 24 hours for the change to take effect.**
+
+Once the dns settings is ready, run the below command from the project root directory for setting up your NGINX reverse proxy with Let's Encrypt SSL certificates.
+
+`source domain.sh`
+
+Once this command is finished, you could point to your domain address, eg: https://example.com
+
+## Enable full-text search with ElasticSearch
+By default, LibreRead will provide a simple metadata search. But if you need full-text search feature to search across all the book content. You will need to setup Docker and ElasticSearch. Run the command shown below from the project root directory to do that.
+
+`source docker_es.sh`
