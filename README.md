@@ -27,7 +27,7 @@ Now you have logged in to your linode. Please follow the below installation inst
 ## Install
 * `apt-get update`
 * `apt-get install -y git-core`
-* `git clone https://github.com/LibreRead/install.git /var/libreread`
+* `git clone https://github.com/LibreRead/install.git /var/libreread --depth 1`
 * `cd /var/libreread`
 * `source install.sh`
 
